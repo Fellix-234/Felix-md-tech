@@ -11,7 +11,7 @@ This is a WhatsApp bot built using the Baileys library for group management, inc
 
  <p align="center">  
  <a href="[https://files.catbox.moe/00zj4n.png](https://files.catbox.moe/00zj4n.png)">
-    <img alt="FELIX MD" height="300" src="https://files.catbox.moe/00zj4n.png">
+    <img alt="FELIX MD" height="400" src="https://files.catbox.moe/00zj4n.png">
 
     
 ## [![Typing SVG](https://readme-typing-svg.bot-hosting.com?font=Rockstar-ExtraBold&color=F33A6A&lines=𝐖𝐞𝐥𝐜𝐨𝐦𝐞+𝐓𝐨:+𝑭ELIX+MD_TECH;ᴏᴡɴᴇʀ+ʙʏ+ʏᴀsɪʏᴀ+ᴏғғɪᴄɪᴀʟ;ℂ𝕣𝕖𝕒𝕥𝕖𝕕+𝕓𝕪:+ʏᴀsɪʏᴀ+ᴀɴᴅ+ɪɴᴅᴜᴡᴀʀᴀ;ᴘᴏᴡᴇʀᴅ+ʙʏ:+ᴄʏʙᴇʀ+ᴡᴀʀʀɪᴏʀs+x+ᴛᴇᴀᴍ)](https://git.io/typing-svg)
