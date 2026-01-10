@@ -35,125 +35,17 @@
 ●. ***Get a Mongodb uri from [railway.app](https://railway.app).***
 
 ●.  ***Click [FORK](https://github.com/yasiyaofc1/FELIX-MD-TECH/fork)***
-<h1 class="title">🤖 Bot Deployment</h1>
+## ```SCAN QR CODE```
 
-<p class="intro">This bot is designed for deployment on <strong>Render</strong>, <strong>Katabump</strong>, and other bot hosting platforms.</p>
+**[SCAN QR-CODE-SERVER-1](https://Rendor.com/@DarkYasiyaofc/FELIX-MD-V2?v=1)**
 
-<h2 class="section">🛠 Setup</h2>
-<ul class="fade-in">
-  <li>Clone the repo</li>
-  <li>Install dependencies: <code>npm install</code></li>
-  <li>Run locally: <code>node bot.js</code></li>
-</ul>
 
-<h2 class="section">🚀 Deployment</h2>
-<div class="button-container">
-  <a href="https://github.com/joelikes8/CBA-DISCORD-BOT/blob/main/RENDER_DEPLOYMENT_GUIDE.md" class="btn">Render Deployment Guide</a>
-  <a href="https://docs.katabump.com/" class="btn">Katabump Hosting Docs</a>
-  <a href="https://www.youtube.com/watch?v=HRFIeOwr_XM" class="btn">Video Tutorial</a>
-</div>
 
-<h2 class="section">🔐 Session ID</h2>
-<p class="pulse">Each bot instance generates a unique session ID for tracking:</p>
-<pre><code>const sessionID = generateSessionID();
-</code></pre>
+**[SCAN QR CODE-SERVER-2](https://bot_hosting.com/@DarkYasiyaofc/FELIX-MD-V2?v=1)**
 
-<!-- Button to "Get Session" (links to your bot endpoint or docs) -->
-<div class="button-container">
-  <a href="http://localhost:3000/" class="btn">Get Session ID</a>
-</div>
+  
 
-<h2 class="section">🧭 Keep Alive</h2>
-<p class="slide-in">Use the <code>/ping</code> endpoint with uptime services to keep the bot online.</p>
-
-<style>
-  /* Title animation */
-  .title {
-    animation: fadeZoom 2s ease-in-out;
-    color: #2c3e50;
-    text-align: center;
-  }
-
-  @keyframes fadeZoom {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  /* Section headings slide in */
-  .section {
-    animation: slideIn 1.5s ease-out;
-    color: #34495e;
-    margin-top: 20px;
-  }
-
-  @keyframes slideIn {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-  }
-
-  /* Fade-in lists */
-  .fade-in {
-    animation: fadeIn 2s ease-in;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* Pulsing text */
-  .pulse {
-    display: inline-block;
-    animation: pulse 2s infinite;
-    color: #e74c3c;
-    font-weight: bold;
-  }
-
-  @keyframes pulse {
-    0% { opacity: 0.3; transform: scale(0.95); }
-    50% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 0.3; transform: scale(0.95); }
-  }
-
-  /* Slide-in paragraph */
-  .slide-in {
-    animation: slideUp 2s ease-out;
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  /* Animated links as buttons */
-  .button-container {
-    margin: 15px 0;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    background: #3498db;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s, transform 0.3s;
-    animation: colorShift 3s infinite;
-  }
-
-  .btn:hover {
-    background: #2ecc71;
-    transform: scale(1.05);
-  }
-
-  @keyframes colorShift {
-    0% { background: #3498db; }
-    50% { background: #e67e22; }
-    100% { background: #3498db; }
-  }
-</style>
+**[SCAN QR-CODE-SERVER-3](https://Felix-md-qr-bb8466fecf86.herokuapp.com/)**
 
 ---
 ﻿<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
