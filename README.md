@@ -21,75 +21,48 @@
 ## 👑 Owner Information
 - **Name:** ᏇᎧᏁᎴᏋᏒᎥᏁᎶ ᏠᏋᏇ (ᏇᏗᏒᏒᎥᎧᏒ)
 - **WhatsApp:** +254725391914
+# FELIX MD TECH
+
+Peaky Blinders themed WhatsApp multi-device bot — lightweight, customizable, and built with Baileys.
+
+![Peaky Blinder](./assets/peaky-blinder.gif)
+
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green?style=for-the-badge) ![Baileys](https://img.shields.io/badge/Baileys-MD-blue?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)
+
+---
+
+## Quick Summary
+- **Purpose:** WhatsApp automation & moderation with web QR login and helpful utilities.
+- **Main features:** QR pairing, auto-react, group moderation, AI chatbot, uptime/ram stats, and dashboard.
+
+---
+
+## Contact
+- **Owner:** ᏇᎧᏁᎴᏋᏒᎥᏁᎶ ᏠᏋᏇ
 - **Email:** warriorfelix5@gmail.com
 - **Website:** https://elgringo.netlify.app/
 
 ---
 
-## 🧠 Creator
-- **Creator:** ᏇᎧᏁᎴᏋᏒᎥᏁᎶ ᏠᏋᏇ (ᏇᏗᏒᏒᎥᎧᏒ)
-- **Role:** Full-Stack Developer & WhatsApp Bot Engineer
-- **Portfolio:** https://elgringo.netlify.app/
-
-> “By order of the Peaky Blinders.”
+## Demo
+![QR Demo](./assets/qr-demo.gif)
 
 ---
 
-## 🚀 Deployment
-
-<p align="center">
-  <a href="#-vps-deployment">
-    <img src="https://img.shields.io/badge/Deploy-VPS-black?style=for-the-badge&logo=linux"/>
-  </a>
-  <a href="#-pterodactyl-panel">
-    <img src="https://img.shields.io/badge/Deploy-PANEL-blue?style=for-the-badge&logo=docker"/>
-  </a>
-  <a href="#-docker-deployment">
-    <img src="https://img.shields.io/badge/Deploy-Docker-2496ED?style=for-the-badge&logo=docker"/>
-  </a>
-  <a href="#-local-installation">
-    <img src="https://img.shields.io/badge/Run-LOCAL-green?style=for-the-badge&logo=node.js"/>
-  </a>
-</p>
-
-> ⚠️ Heroku / Railway / Render are **NOT supported**  
-> ✔ Recommended: **VPS, Panel, or Docker**
-
----
-
-## ⚡ Features
-- Baileys WhatsApp Multi-Device
-- Web-based QR login
-- Pairing-code login
-- Animated button menu
-- Peaky Blinders quotes
-- Auto-react & stealth mode
-- Group moderation tools
-- AI chatbot
-- Status auto-view
-- Uptime, RAM & ping
-- Client inquiry system
-- Portfolio & website dashboard
-- Website analytics ping
-- Secure session handling
-
----
-
-## 📸 Web QR Demo
-
-<p align="center">
-  <img src="./assets/qr-demo.gif" width="300"/>
-</p>
-
----
-
-## 🖥️ VPS Deployment
+## Quick Start (Local or VPS)
+1. Install Node.js 18+ and Git.
+2. Clone and install:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs git
-git clone https://github.com/YOUR_USERNAME/felix-md-tech.git
+git clone https://github.com/Fellobah/felix-md-tech.git
 cd felix-md-tech
 npm install
 node index.js
+```
+
+Notes: VPS/Panel/Docker recommended for production. Heroku/Railway/Render are unsupported.
+
+---
+
+License: MIT
+
