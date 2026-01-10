@@ -1,0 +1,5 @@
+# List session files to preserve
+
+# Add session filenames (one per line) that should not be auto-deleted.
+# Example:
+# felix.session

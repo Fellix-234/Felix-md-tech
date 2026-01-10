@@ -1,0 +1,13 @@
+{
+  "name": "felix-md-tech",
+  "version": "1.0.0",
+  "description": "FELIX MD TECH WhatsApp Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.0",
+    "pino": "^8.17.0"
+  }
+}
