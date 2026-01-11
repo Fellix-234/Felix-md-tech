@@ -1,10 +1,6 @@
-import makeWASocket, {
-  useMultiFileAuthState,
-  DisconnectReason
-} from "@whiskeysockets/baileys"
-
-import qrcode from "qrcode-terminal"
-import chalk from "chalk"
+import 'dotenv/config';
+import express from 'express';
+import { createBot } from 'whatsapp-cloud-api';
 
 async function startBot () {
   // Auth state (saved in /session folder)
