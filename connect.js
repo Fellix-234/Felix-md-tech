@@ -1,6 +1,7 @@
-import makeWASocket, { useSingleFileAuthState } from "@whiskeysockets/baileys";
-import { writeFileSync } from "fs";
-import qrcode from "qrcode-terminal";
+
+import 'dotenv/config';
+import express from 'express';
+import { createBot } from 'whatsapp-cloud-api';
 
 const { state, saveState } = useSingleFileAuthState('./session/creds.json');
 
