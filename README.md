@@ -75,12 +75,12 @@ Click the button below to fork the Knight Bot repository to your GitHub account:
 <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
 
 <!-- Get Session ID Button -->
-<a href="https://Felix-bot-paircode.onrender.com" target="_blank" style="text-decoration: none;">
+<a href="https://Felix-md-tech.onrender.com/pair" target="_blank" style="text-decoration: none;">
   <img src="https://img.shields.io/badge/GET%20SESSION-ID-Easy%20Method-blue?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Get Session ID" />
 </a>
 
 <!-- Scan QR / Pairing Code Button -->
-<a href="https://Felix-bot-paircode.onrender.com" target="_blank" style="text-decoration: none;">
+<a href="https://Felix-md-tech.onrender.com/pair" target="_blank" style="text-decoration: none;">
   <img src="https://img.shields.io/badge/SCAN%20QR%20CODE-Pairing%20Mode-green?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Scan QR" />
 </a>
 
