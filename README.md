@@ -93,94 +93,54 @@ For further customization and setup guidance, click the button below:
 
 ----------
 
+---
+
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Rockstar-ExtraBold&size=36&pause=1200&color=F33A6A&center=true&width=800&height=70&lines=FELIX+MD+BOT+OWNERS" />
+</div>
+
+---
+
+<div align="center">
+
+### 👑 Lead Developer
+
+<img src="https://telegra.ph/file/896953d764d69c906a4b7.jpg" width="140" style="border-radius:50%" />
+
+**WARRIOR FELIX**  
+Lead Developer & Founder  
+
+🔹 WhatsApp MD Bots  
+🔹 Node.js & Baileys  
+🔹 Bot Architecture  
+
+📞 [Contact on WhatsApp](https://wa.me/254701881604)
+
+---
+
+### ⚔️ Co-Developer
+
+<img src="https://telegra.ph/file/903e16f9effd8de11cc76.jpg" width="140" style="border-radius:50%" />
+
+**MCFELLO**  
+Co-Developer & Maintainer  
+
+🔹 Command Development  
+🔹 Deployment & VPS  
+🔹 Testing & Support  
+
+📞 [Contact on WhatsApp](https://wa.me/254725391914)
+
+</div>
+
+---
+
+<div align="center">
+
+💡 *Felix MD Tech is actively maintained by experienced WhatsApp bot developers,  
+focused on performance, stability, and ease of use.*
+
+</div>
+
+---
 ㅤ
----
-
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Rockstar-ExtraBold&size=40&pause=1000&color=F33A6A&center=true&width=900&height=80&lines=💃+FELIX+MD+BOT+OWNERS;Meet+The+Brains+Behind+Felix+MD+Tech" />
-</div>
-
----
-
-## 👑 Lead Developer & Founder
-
-<div align="center">
-  <img src="https://telegra.ph/file/896953d764d69c906a4b7.jpg" height="150" style="border-radius:50%" />
-</div>
-
-### ⚜️ **WARRIOR FELIX**
-
-- 🧠 **Role:** Lead Developer & Project Owner  
-- 💻 **Specialization:**  
-  - WhatsApp Multi-Device Bots  
-  - Node.js & Baileys  
-  - Bot Security & Stability  
-- 🚀 **Contribution:**  
-  - Core bot architecture  
-  - Session & pairing system  
-  - Performance optimization  
-- 📞 **Contact:**  
-  👉 https://wa.me/254701881604  
-
-> *“Building fast, stable, and user-friendly WhatsApp automation tools.”*
-
----
-
-## ⚔️ Co-Developer & Maintainer
-
-<div align="center">
-  <img src="https://telegra.ph/file/903e16f9effd8de11cc76.jpg" height="150" style="border-radius:50%" />
-</div>
-
-### ⚜️ **MCFELLO**
-
-- 🧩 **Role:** Co-Developer & Bot Maintainer  
-- 🛠️ **Specialization:**  
-  - Command development  
-  - Plugin systems  
-  - VPS & Panel deployment  
-- 🔧 **Contribution:**  
-  - Feature implementation  
-  - Bug fixes & testing  
-  - Deployment support  
-- 📞 **Contact:**  
-  👉 https://wa.me/254725391914  
-
-> *“Making Felix MD Tech reliable and easy for everyone to use.”*
-
----
-
-## 🤖 About Felix MD Tech Team
-
-Felix MD Tech is developed by a **dedicated team of WhatsApp bot developers**
-focused on:
-
-✅ Stability  
-✅ Speed  
-✅ Clean code  
-✅ Beginner-friendly setup  
-✅ Long-term support  
-
-The team actively maintains the bot, adds new features, and provides
-support for users deploying the bot on **VPS, Replit, and hosting panels**.
-
----
-
-## 🌐 Official Support
-
-<div align="center">
-  <a href="https://chat.whatsapp.com/L2i6oDCjljt4mtBTUvTh7t">
-    <img src="https://img.shields.io/badge/Join%20Support%20Group-WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-  </a>
-</div>
-
----
-
-ㅤ
-
-
-
-ㅤㅤㅤ
----
-
-
