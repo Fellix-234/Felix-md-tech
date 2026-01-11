@@ -52,10 +52,10 @@ This is a WhatsApp bot built using the Baileys library for group management, inc
 
 ---
 ﻿<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-Click the button below to fork the Knight Bot repository to your GitHub account:
+Click the button below to fork the Felix MD repository to your GitHub account:
 
 <div align="center">
-  <a href="https://github.com/mruniquehacker/Knightbot-MD/fork">
+  <a href="https://github.com/mruniquehacker/FELIX-MD-TECH/fork">
     <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork the repository"/>
   </a>
 </div>
