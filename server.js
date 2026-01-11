@@ -1,1 +1,1 @@
-https://felix-md-tech.onrender.com/pair
+https://Felix-md-tech.onrender.com/pair
