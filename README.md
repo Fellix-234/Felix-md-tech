@@ -1,6 +1,5 @@
 # 🤖 FELIX MD TECH
-
-This is a WhatsApp bot built using the Baileys library for group management, including features like tagging all members, muting/unmuting, and many more. It's designed to help admins efficiently manage WhatsApp groups.
+This is a WhatsApp designed and coded by Felix Der Krieger  it contains more cool features and as you enjoy our bot kindly bless us with stars and forks Enjoy;
 
 
 <div align="center"> 
