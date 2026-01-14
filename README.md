@@ -137,12 +137,22 @@ Click the button below to fork the Felix MD repository to your GitHub account:
 <a href="https://bot-hosting.net/?aff=1068419752923508776">
   <img src="https://img.shields.io/badge/OFFICIAL%20DEPLOYMENT-BOT%20HOSTING-5865F2?style=for-the-badge&logo=server&logoColor=white" />
 </a>
+------
+<a href="https://render.com/deploy?repo=https://github.com/Fellobah/Felix-md-tech">
+  <img src="https://img.shields.io/badge/Deploy%20To%20Render-blue?style=for-the-badge&logo=render" />
+</a>
+----
 
 <a href="https://client.petrosky.io/aff.php?aff=394">
   <img src="https://img.shields.io/badge/OFFICIAL%20VPS-PETROSKY-0078E7?style=for-the-badge&logo=linux&logoColor=white" />
 </a>
 
 </div>
+
+<a href="https://github.com/Fellobah/Felix-md-tech/archive/refs/heads/main.zip">
+  <img src="https://img.shields.io/badge/DOWNLOAD-ZIP-green?style=for-the-badge&logo=github" />
+</a>
+
 
 ----------
 
