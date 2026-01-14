@@ -16,112 +16,152 @@ This is a WhatsApp designed and coded by Felix Der Krieger  it contains more coo
     
 <div align="center">
 
-<img src="https://img.shields.io/github/stars/Fellobah/Felix-md-tech?style=for-the-badge" />
-<img src="https://img.shields.io/github/forks/Fellobah/Felix-md-tech?style=for-the-badge" />
-<img src="https://img.shields.io/github/issues/Fellobah/Felix-md-tech?style=for-the-badge" />
-<img src="https://img.shields.io/github/license/Fellobah/Felix-md-tech?style=for-the-badge" />
-<img src="https://img.shields.io/badge/STATUS-ACTIVELY%20MAINTAINED-brightgreen?style=for-the-badge" />
+# 🤖 **FELIX-MD-TECH**
+### A Powerful WhatsApp Multi-Device Bot Built on Node.js + Baileys
 
-</div>
-
-
-
-![forks](https://img.shields.io/github/forks/yasiyaofc1/FELIX-MD?label=Forks&style=social)
-
-![stars](https://img.shields.io/github/stars/yasiyaofc1/FELIX-MD?style=social)
-
-----------
-<a aria-label="Join our chats" href="https://chat.whatsapp.com/L2i6oDCjljt4mtBTUvTh7t" target="_blank">
-    <img alt="whatsapp" src="https://img.shields.io/badge/Join Supporter Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-  </a>
-  
-  <a aria-label="Secktor is free to use" href="https://github.com/SamPandey001/Secktor-Md/blob/main/LICENCE" target="_blank">
-    <img alt="License: GPL-3" src="https://badges.frapsoft.com/os/gpl/gpl.png?v=103)](https://opensource.org/licenses/GPL-3.0/" target="_blank" />
-  </a>
-
-</p>
-
-
-----------
-●. ***Get a Mongodb uri from [Clever-Cloud](https://api.clever-cloud.com/v2/session/login).***
-
-●. ***Get a Mongodb uri from [railway.app](https://railway.app).***
-
-●.  ***Click [FORK](https://github.com/yasiyaofc1/FELIX-MD-TECH/fork)***
-
----
-﻿<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-Click the button below to fork the Felix MD repository to your GitHub account:
-
-<div align="center">
-  <a href="https://github.com/mruniquehacker/FELIX-MD-TECH/fork">
-    <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork the repository"/>
-  </a>
-</div>
-
----
-## 🚀 Felix MD Bot Hosting & Session Dashboard
-
-<div align="center">
-
-<!-- Bot Deployment Animated GIF -->
-<img src="https://media.giphy.com/media/3ohs4BSacFKI7A717y/giphy.gif" width="400" alt="Deploy Bot Animation" />
+![Stars](https://img.shields.io/github/stars/yourusername/Felix-md-tech?style=flat-square)
+![Forks](https://img.shields.io/github/forks/yourusername/Felix-md-tech?style=flat-square)
+![Language](https://img.shields.io/badge/Node.js-18-blue?style=flat-square&logo=node.js)
+![Platform](https://img.shields.io/badge/WhatsApp-MD-green?style=flat-square&logo=whatsapp)
 
 ---
 
-### 🎯 Quick Actions
+## 🔐 **GET WHATSAPP SESSION**
 
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-
-<!-- Get Session ID Button -->
-<a href="https://Felix-md-tech.onrender.com/pair" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/badge/GET%20SESSION-ID-Easy%20Method-blue?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Get Session ID" />
+<a href="https://session-generator.tech/felix-md-tech">
+  <img src="https://img.shields.io/badge/GET_SESSION_JSON-felix--md--tech-blue?style=for-the-badge&logo=whatsapp" />
 </a>
 
-<!-- Scan QR / Pairing Code Button -->
-<a href="https://Felix-md-tech.onrender.com/pair" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/badge/SCAN%20QR%20CODE-Pairing%20Mode-green?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Scan QR" />
+---
+
+## 🚀 **Deploy Felix-MD-Tech**
+
+### 🟣 Heroku  
+<a href="https://heroku.com/deploy?template=https://github.com/yourusername/Felix-md-tech">
+  <img src="https://img.shields.io/badge/DEPLOY_TO_HEROKU-purple?style=for-the-badge&logo=heroku" />
 </a>
 
-<!-- Download Bot Files Button -->
-<a href="https://github.com/Fellobah/Felix-md-tech/archive/refs/heads/main.zip" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/badge/DOWNLOAD-Bot%20Files-orange?style=for-the-badge&logo=github&logoColor=white" alt="Download Bot Files" />
+### 🔵 Render  
+<a href="https://render.com/deploy?repo=https://github.com/yourusername/Felix-md-tech">
+  <img src="https://img.shields.io/badge/DEPLOY_TO_RENDER-blue?style=for-the-badge&logo=render" />
 </a>
 
-<!-- Official Deployment Badge -->
-<a href="https://bot-hosting.net/?aff=1068419752923508776" target="_blank" style="text-decoration: none;">
-  <img src="https://img.shields.io/badge/Official-Deployment-purple?style=for-the-badge&logo=render&logoColor=white" alt="Official Deployment" />
+### 🟡 Railway  
+<a href="https://railway.app/template?repo=https://github.com/yourusername/Felix-md-tech">
+  <img src="https://img.shields.io/badge/DEPLOY_TO_RAILWAY-yellow?style=for-the-badge&logo=railway" />
 </a>
-
-</div>
 
 ---
 
-### 🛡️ Security & Trust
+## ✨ **Features**
 
-<div align="center">
-<img src="https://img.shields.io/badge/Secure-Bot-4CAF50?style=for-the-badge&logo=shield&logoColor=white" alt="Security Badge" />
-<img src="https://img.shields.io/badge/Trusted-Bot-2196F3?style=for-the-badge&logo=verified&logoColor=white" alt="Trusted Badge" />
-<img src="https://img.shields.io/badge/Maintained-Yes-FF9800?style=for-the-badge&logo=github&logoColor=white" alt="Maintained Badge" />
-</div>
-
----
-
-### 📊 Bot Stats & Contributors
-
-<div align="center">
-<img src="https://img.shields.io/github/stars/Fellobah/Felix-md-tech?style=social" alt="Stars Badge" />
-<img src="https://img.shields.io/github/forks/Fellobah/Felix-md-tech?style=social" alt="Forks Badge" />
-<img src="https://img.shields.io/github/contributors/Fellobah/Felix-md-tech?style=social" alt="Contributors Badge" />
-</div>
+✔ Auto-reply  
+✔ Sticker maker  
+✔ Image & video converter  
+✔ Downloader tools (TikTok, YouTube, IG, FB…)  
+✔ Anti-delete messages  
+✔ Group management tools  
+✔ Fun commands  
+✔ Owner-only features  
+✔ Much more…
 
 ---
 
-<div align="center">
-> Click **GET SESSION ID** first → then **SCAN QR** → finally **DOWNLOAD BOT FILES** to deploy your bot.
-</div>
+## 📦 **Installation (Local Machine)**
+
+### 1️⃣ Clone the repository  
+```bash
+git clone https://github.com/yourusername/Felix-md-tech
+cd Felix-md-tech
+```
+
+### 2️⃣ Install dependencies  
+```bash
+npm install
+```
+
+### 3️⃣ Get your `session.json`  
+Click the button above → scan QR → download session → place in root folder:
+
+```
+Felix-md-tech/
+ ├── index.js
+ ├── session.json   ← HERE
+ ├── package.json
+```
+
+### 4️⃣ Start the bot  
+```bash
+npm start
+```
+
+---
+
+## 🛠️ **Configuration**
+
+Edit `config.js`:
+
+```js
+export default {
+  owner: ["2547XXXXXXX"],
+  botname: "Felix-MD-Tech",
+  prefix: ".",
+};
+```
+
+---
+
+## 📁 **Project Structure**
+
+```
+Felix-md-tech/
+│── index.js
+│── package.json
+│── session.json
+│── lib/
+│── commands/
+│── README.md
+│── media/
+```
+
+---
+
+## 🧩 **How to Add New Commands**
+
+Create files inside `/commands/` directory:
+
+```js
+export default {
+  name: "hi",
+  run: async (sock, m) => {
+    await sock.sendMessage(m.chat, { text: "Hello from Felix-MD-Tech!" });
+  }
+};
+```
+
+---
+
+## 🤝 **Contributing**
+
+Pull requests are welcome!  
+Open an issue for new feature requests.
+
+---
+
+## 👨‍💻 **Developer**
+**Felix-md-tech Team**  
+Made with ❤️ for WhatsApp users.
+
+---
+
+## 📜 **License**
+MIT License
 
 </div>
+
+
+
+
 
 
 
@@ -137,34 +177,6 @@ Click the button below to fork the Felix MD repository to your GitHub account:
 <a href="https://bot-hosting.net/?aff=1068419752923508776">
   <img src="https://img.shields.io/badge/OFFICIAL%20DEPLOYMENT-BOT%20HOSTING-5865F2?style=for-the-badge&logo=server&logoColor=white" />
 </a>
-------
-<a href="https://render.com/deploy?repo=https://github.com/Fellobah/Felix-md-tech">
-  <img src="https://img.shields.io/badge/Deploy%20To%20Render-blue?style=for-the-badge&logo=render" />
-</a>
-----
-
-<a href="https://client.petrosky.io/aff.php?aff=394">
-  <img src="https://img.shields.io/badge/OFFICIAL%20VPS-PETROSKY-0078E7?style=for-the-badge&logo=linux&logoColor=white" />
-</a>
-
-</div>
-
-<a href="https://github.com/Fellobah/Felix-md-tech/archive/refs/heads/main.zip">
-  <img src="https://img.shields.io/badge/DOWNLOAD-ZIP-green?style=for-the-badge&logo=github" />
-</a>
-
-
-----------
-
----
-
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Rockstar-ExtraBold&size=36&pause=1200&color=F33A6A&center=true&width=800&height=70&lines=FELIX+MD+BOT+OWNERS" />
-</div>
-
----
-
-<div align="center">
 
 ### 👑 Lead Developer
 
