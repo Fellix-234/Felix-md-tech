@@ -199,13 +199,7 @@ MIT License
 
 ---
 
-### Step 3: Deploy Now
 
-<div align="center">
-
-<a href="https://bot-hosting.net/?aff=1068419752923508776">
-  <img src="https://img.shields.io/badge/OFFICIAL%20DEPLOYMENT-BOT%20HOSTING-5865F2?style=for-the-badge&logo=server&logoColor=white" />
-</a>
 
 ### 👑 Lead Developer
 
