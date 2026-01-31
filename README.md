@@ -127,7 +127,7 @@ Upload the `creds.json` file to the `session` folder.
 
 <div align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=25D366&center=true&width=600&lines=Thanks+for+the+Bot" alt="Typing SVG"/>
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=25D366&center=true&width=700&lines=Here+are+your+favorite+developers+for+Felix+MD+Tech" alt="Typing SVG"/>
   </a>
 </div>
 
