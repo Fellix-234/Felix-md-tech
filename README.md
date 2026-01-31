@@ -70,7 +70,7 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 Deploy the bot and connect it to your WhatsApp account using a pair code:
 
 <div align="center">
-  <a href="https://felix-md-tech.onrender.com" target="_blank">
+  <a href="https://felix-md-tech1.onrender.com" target="_blank">
     <img src="https://img.shields.io/badge/Get%20Pair%20Code-FF4D4D?style=for-the-badge" alt="Pair Code"/>
   </a>
 </div>
