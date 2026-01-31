@@ -35,7 +35,13 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 - 🎨 **Colorful & animated interface**  
 - 🌐 **Translation, weather, fun tools, and more**
 
-<div style="height: 6px; background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF); border-radius:3px; margin:15px 0;"></div>
+
+
+<div align="center">
+  <img src="https://media.tenor.com/FsaLr0o7Yq4AAAAC/rainbow-bar.gif" width="80%"/>
+</div>
+
+
 
 ## 🛠️ Steps to Deploy Bot
 
