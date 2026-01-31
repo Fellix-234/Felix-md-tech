@@ -1,125 +1,144 @@
-<p align="center">
-  <img src="https://i.imgur.com/8Km9tLL.gif" width="120"/>
-</p>
+# 🤖 Felix-MD
 
-<h1 align="center">Felix-MD</h1>
+This is a WhatsApp bot built using the Baileys library for multi-device support, media handling, stickers, and more. Felix-MD helps you automate WhatsApp efficiently.
 
-<p align="center">
-  [![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Felix-MD;Multi-device+WhatsApp+Bot;Coded+by+Wondering+Jew&font=Fira+Code&size=28&pause=1000&color=25D366&center=true)](https://git.io/typing-svg)
-</p>
+<div align="center"> 
+  <a href="https://readme-typing-svg.demolab.com"> 
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=40&pause=1000&color=33ff00&center=true&width=800&height=70&lines=Felix-MD;Multi+Device+WhatsApp+Bot;Coded+by+Wondering+Jew" alt="Typing SVG" />
+  </a> 
+</div> 
 
-<p align="center">
-  <img src="https://i.imgur.com/3D1k4lZ.gif" width="600" style="border-radius:15px; box-shadow:0px 0px 20px #25D366;"/>
-</p>
-
----
-
-<div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ FEATURES DASHBOARD ✦
-  </sub>
+<div align="center"> 
+  <img src="https://i.imgur.com/3D1k4lZ.gif" alt="Felix-MD Bot" height="250" style="border-radius:10px;"/>
 </div>
 
-| Feature | Progress |
-|---------|---------|
-| ✨ Multi-device WhatsApp bot | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 60% |
-| 💬 Typing animation & quick commands | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 80% |
-| 🖼 Sticker creation & media handling | 🟩🟩🟩🟩🟩🟩🟩🟩🟩⬜ 90% |
-| ⚡ Fast deployment | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 80% |
-| 🔐 Secure session handling | 🟩🟩🟩🟩🟩🟩🟨⬜⬜⬜ 70% |
-| 🎨 Animated & colorful interface | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-
----
-
 <div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ COMMANDS ✦
-  </sub>
+  <img src="https://img.shields.io/github/followers/WonderingJew?style=for-the-badge&label=Followers" alt="Followers"/>
+  <img src="https://img.shields.io/github/stars/WonderingJew/Felix-MD?style=for-the-badge&label=Stars" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/WonderingJew/Felix-MD?style=for-the-badge&label=Forks" alt="Forks"/>
+  <img src="https://img.shields.io/github/watchers/WonderingJew/Felix-MD?style=for-the-badge&label=Watchers" alt="Watchers"/>
 </div>
 
-| Command | Description |
-|---------|-------------|
-| `!menu` | 📋 Show bot command menu |
-| `!sticker` | 🖼 Create sticker from image |
-| `!info` | ℹ️ Bot info & stats |
-| `!weather` | 🌤 Get weather info |
-| `!translate` | 🌐 Translate text |
-| `!quote` | 📝 Motivational quotes |
-| `!joke` | 😂 Random jokes |
-| `!gif` | 🎞 Send GIFs |
-| `!download` | ⬇️ Download media |
-| `!profile` | 👤 User profile |
-| `!reminder` | ⏰ Set reminders |
-| `!poll` | 📊 Create polls |
-| `!game` | 🎮 Mini-games |
-| `!broadcast` | 📢 Broadcast messages |
-| `!tts` | 🔊 Text-to-speech |
-| `!weatheralert` | ⚡ Weather notifications |
-| `!leaderboard` | 🏆 Rankings & points |
-| `!shortcut` | 💡 Smart suggestions |
+---
+
+## 🚀 Features
+
+- ✨ **Multi-device WhatsApp bot**  
+- 💬 **Typing animation & quick commands**  
+- 🖼 **Sticker creation & media handling**  
+- ⚡ **Fast deployment & lightweight**  
+- 🔐 **Secure session handling**  
+- 🎨 **Colorful & animated interface**  
+- 🌐 **Translation, weather, fun tools, and more**
 
 ---
+
+## 🛠️ Steps to Deploy Bot
+
+### Step 1: Fork the Repository
 
 <div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ DEPLOYMENT OPTIONS ✦
-  </sub>
+  <a href="https://github.com/WonderingJew/Felix-MD/fork">
+    <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork"/>
+  </a>
 </div>
 
-<p align="center">
-  [![Railway](https://img.shields.io/badge/Deploy%20on%20Railway-25D366?style=for-the-badge&logo=railway)](https://railway.app/new/template)
-  [![Render](https://img.shields.io/badge/Deploy%20on%20Render-25D366?style=for-the-badge&logo=render)](https://render.com/deploy)
-  [![Panel](https://img.shields.io/badge/Deploy%20on%20Panel-25D366?style=for-the-badge&logo=katacoda)](https://panel.katacoda.com)
-  [![Katabump](https://img.shields.io/badge/Deploy%20on%20Katabump-25D366?style=for-the-badge&logo=katacoda)](https://katabump.example.com)
-  [![Get Session](https://img.shields.io/badge/Get%20Session-25D366?style=for-the-badge&logo=whatsapp)](https://session-generator-one.vercel.app/)
-</p>
-
 ---
+
+### Step 2: Get Pair Code
+
+Deploy the bot and connect it to your WhatsApp account using a pair code:
 
 <div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ DEVELOPERS ✦
-  </sub>
+  <a href="https://session-generator-one.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/Get%20Pair%20Code-FF4D4D?style=for-the-badge" alt="Pair Code"/>
+  </a>
 </div>
 
-<p align="center">
-  <img src="https://i.imgur.com/your-developer-image.jpg" width="120" style="border-radius:50%; margin:5px;"/>
-  <img src="https://i.imgur.com/your-contributor-image.jpg" width="120" style="border-radius:50%; margin:5px;"/>
-</p>
-
-<p align="center">
-  <b>Wondering Jew</b> – [📱 WhatsApp](https://wa.me/254725391914) | [📱 WhatsApp](https://wa.me/254701881604)<br>
-  <b>McFello</b> – [📱 WhatsApp](https://wa.me/254725391914)
-</p>
+Upload the `creds.json` file to the `session` folder.
 
 ---
+
+### Step 3: Deploy Now
 
 <div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ SECURITY & TIPS ✦
-  </sub>
+  <a href="https://youtu.be/-oz_u1iMgf8">
+    <img src="https://img.shields.io/badge/Deploy%20Tutorial-DC3545?style=for-the-badge&logo=youtube" alt="YouTube"/>
+  </a>
+  <a href="https://bot-hosting.net/?aff=1068419752923508776">
+    <img src="https://img.shields.io/badge/Deploy%20on%20Panel-28A745?style=for-the-badge" alt="Panel"/>
+  </a>
 </div>
 
-- 🔒 Never share `session.json`  
-- ⚠️ Regenerate session if compromised  
-- 🛡️ Use private deployments only  
-- 💾 Backup important data  
-- 🔑 Limit admin access  
-- ⚡ Keep dependencies updated  
-
----
+### Deploy on VPS
 
 <div align="center">
-  <sub style="background: linear-gradient(90deg,#25D366,#128C7E,#075E54); color:white; padding:3px 10px; border-radius:5px;">
-    ✦ DISCLAIMER ✦
-  </sub>
+  <a href="https://client.petrosky.io/aff.php?aff=394" target="_blank">
+    <img src="https://img.shields.io/badge/Petrosky%20VPS-0078E7?style=for-the-badge" alt="VPS"/>
+  </a>
 </div>
 
-Unofficial WhatsApp API • Not affiliated with Meta/WhatsApp
+### Deploy on Katabump Panel
+
+<div align="center">
+<a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
+  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=black" alt="Katabump"/>
+</a>
+</div>
 
 ---
 
-<p align="center">
-  <img src="https://i.imgur.com/8Km9tLL.gif" width="500" style="border-radius:15px; box-shadow:0px 0px 15px #25D366;"/>
-</p>
+## 👥 Developers
 
+<table align="center">
+<tr>
+<td align="center">
+<div style="border-radius:15px; overflow:hidden; box-shadow:0px 0px 15px #25D366">
+<img src="https://via.placeholder.com/120" width="120" style="border-radius:50%;"/>
+<br>
+<b>Wondering Jew</b><br>
+[📱 WhatsApp +254725391914](https://wa.me/254725391914)<br>
+[📱 WhatsApp +254701881604](https://wa.me/254701881604)
+</div>
+</td>
+<td align="center">
+<div style="border-radius:15px; overflow:hidden; box-shadow:0px 0px 15px #25D366">
+<img src="https://via.placeholder.com/120" width="120" style="border-radius:50%;"/>
+<br>
+<b>McFello</b><br>
+[📱 WhatsApp +254725391914](https://wa.me/254725391914)
+</div>
+</td>
+</tr>
+</table>
+
+---
+
+## 🔐 Security & Tips
+
+- Never share your `session.json`  
+- Regenerate session if compromised  
+- Use private deployments only  
+- Backup important data regularly  
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://github.com/WonderingJew/Felix-MD/blob/main/LICENSE)
+
+---
+
+## 💬 Community & Support
+
+[![Join WhatsApp](https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/254725391914)
+[![Join Telegram](https://img.shields.io/badge/Join%20Telegram-25D366?style=for-the-badge&logo=telegram)](https://t.me/YourTelegramChannel)
+[![Join Discord](https://img.shields.io/badge/Join%20Discord-25D366?style=for-the-badge&logo=discord)](https://discord.gg/YourDiscordInvite)
+
+
+
+---
+
+## ⚠️ Disclaimer
+
+Unofficial WhatsApp bot 
