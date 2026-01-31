@@ -9,7 +9,7 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 </div> 
 
 <div align="center"> 
-  <img src="https://files.catbox.moe/cs1vep.jpg" alt="Felix-MD Bot" height="250" style="border-radius:10px;"/>
+  <img src="https://files.catbox.moe/cs1vep.jpg" alt="Felix-MD Bot" height="350" style="border-radius:10px;"/>
 </div>
 
 <div align="center">
