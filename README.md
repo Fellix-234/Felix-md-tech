@@ -19,8 +19,10 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
   <img src="https://img.shields.io/github/watchers/WonderingJew/Felix-MD?style=for-the-badge&label=Watchers" alt="Watchers"/>
 </div>
 
+
+
 <div align="center">
-  <img src="https://media.tenor.com/5BtLQQ3Qj9MAAAAC/rainbow-line.gif" width="80%" />
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
 </div>
 
 
@@ -44,6 +46,11 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 
 
 ## 🛠️ Steps to Deploy Bot
+
+
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
 
 ### Step 1: Fork the Repository
 
@@ -70,7 +77,11 @@ Deploy the bot and connect it to your WhatsApp account using a pair code:
 
 Upload the `creds.json` file to the `session` folder.
 
-<div style="height: 6px; background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF); border-radius:3px; margin:15px 0;"></div>
+
+
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
 
 
 ### Step 3: Deploy Now
@@ -84,12 +95,22 @@ Upload the `creds.json` file to the `session` folder.
   </a>
 </div>
 
+
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
+
 ### Deploy on VPS
 
 <div align="center">
   <a href="https://client.petrosky.io/aff.php?aff=394" target="_blank">
     <img src="https://img.shields.io/badge/Petrosky%20VPS-0078E7?style=for-the-badge" alt="VPS"/>
   </a>
+</div>
+
+
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
 </div>
 
 ### Deploy on Katabump Panel
