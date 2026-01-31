@@ -53,8 +53,10 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
   </a>
 </div>
 
-<div style="height: 6px; background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF); border-radius:3px; margin:15px 0;"></div>
- 
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="80%" />
+</div>
+
 
 ### Step 2: Get Pair Code
 
