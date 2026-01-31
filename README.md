@@ -87,38 +87,22 @@ Upload the `creds.json` file to the `session` folder.
 </div>
 
 ---
-
 ## 👥 Developers
 
-<table align="center">
-<tr>
-<td align="center">
-<div style="border-radius:15px; overflow:hidden; box-shadow:0px 0px 15px #25D366">
-<img src="https://via.placeholder.com/120" width="120" style="border-radius:50%;"/>
+<p align="center">
 
-</td>
-</div>
-------
-## 👥 Developers
+![Wondering Jew](https://i.imgur.com/your-image1.jpg =120x120)  
+**Wondering Jew**  
+[📱 WhatsApp +254725391914](https://wa.me/254725391914)  
+[📱 WhatsApp +254701881604](https://wa.me/254701881604)
 
-<div align="center">
+<br>
 
-<div style="display:inline-block; text-align:center; margin:10px;">
-  <img src="https://i.imgur.com/your-image1.jpg" width="120" style="border-radius:50%; box-shadow:0px 0px 15px #25D366;"/>
-  <br>
-  **Wondering Jew**  
-  [📱 WhatsApp +254725391914](https://wa.me/254725391914)  
-  [📱 WhatsApp +254701881604](https://wa.me/254701881604)
-</div>
+![McFello](https://i.imgur.com/your-image2.jpg =120x120)  
+**McFello**  
+[📱 WhatsApp +254725391914](https://wa.me/254725391914)
 
-<div style="display:inline-block; text-align:center; margin:10px;">
-  <img src="https://i.imgur.com/your-image2.jpg" width="120" style="border-radius:50%; box-shadow:0px 0px 15px #25D366;"/>
-  <br>
-  **McFello**  
-  [📱 WhatsApp +254725391914](https://wa.me/254725391914)
-</div>
-
-</div>
+</p>
 
 
 ---
