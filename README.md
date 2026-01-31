@@ -36,10 +36,10 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 - 🌐 **Translation, weather, fun tools, and more**
 
 
-
 <div align="center">
-  <img src="https://media.tenor.com/FsaLr0o7Yq4AAAAC/rainbow-bar.gif" width="80%"/>
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
 </div>
+
 
 
 
@@ -54,7 +54,7 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/KQUJY8x.gif" width="80%" />
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
 </div>
 
 
@@ -100,7 +100,10 @@ Upload the `creds.json` file to the `session` folder.
 </a>
 </div>
 
-<div style="height: 6px; background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF); border-radius:3px; margin:15px 0;"></div>
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
+
 
 ## 👥 Developers
 
@@ -120,7 +123,9 @@ Upload the `creds.json` file to the `session` folder.
 </p>
 
 
-<div style="height: 6px; background: linear-gradient(90deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF); border-radius:3px; margin:15px 0;"></div>
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
 
 
 ## 🔐 Security & Tips
@@ -128,15 +133,21 @@ Upload the `creds.json` file to the `session` folder.
 - Never share your `session.json`  
 - Regenerate session if compromised  
 - Use private deployments only  
-- Backup important data regularly  
+- Backup important data regularly
 
----
+  <div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
+
 
 ## 📄 License
 
 This project is licensed under the [MIT License](https://github.com/WonderingJew/Felix-MD/blob/main/LICENSE)
 
----
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
+
 
 ## 💬 Community & Support
 
@@ -145,8 +156,10 @@ This project is licensed under the [MIT License](https://github.com/WonderingJew
 [![Join Discord](https://img.shields.io/badge/Join%20Discord-25D366?style=for-the-badge&logo=discord)](https://discord.gg/YourDiscordInvite)
 
 
+<div align="center">
+  <img src="https://i.imgur.com/KQUJY8x.gif" width="100%" />
+</div>
 
----
 
 ## ⚠️ Disclaimer
 
