@@ -23,9 +23,7 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 </div>
 
 <!-- Felix-MD Chat Header -->
-<p align="center">
-  <img src="https://i.imgur.com/8Km9tLL.gif" width="70" />
-</p>
+
 
 <!-- Incoming Message -->
 <p align="center">
