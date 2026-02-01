@@ -12,6 +12,17 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
   <img src="https://files.catbox.moe/cs1vep.jpg" alt="Felix-MD Bot" height="350" style="border-radius:10px;"/>
 </div>
 
+
+
+
+<div align="center">
+  <img src="https://img.shields.io/github/followers/Fellobah?style=for-the-badge&label=Followers" alt="Followers"/>
+  <img src="https://img.shields.io/github/stars/Fellobah/Felix-MD?style=for-the-badge&label=Stars" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/Fellobah/Felix-MD?style=for-the-badge&label=Forks" alt="Forks"/>
+  <img src="https://img.shields.io/github/watchers/Fellobah/Felix-MD?style=for-the-badge&label=Watchers" alt="Watchers"/>
+</div>
+
+
 <p align="center">
   <a href="https://github.com/Fellobah/Felix-md-tech">
     <img
@@ -20,17 +31,6 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
     />
   </a>
 </p>
-
-
-<div align="center">
-  <img src="https://img.shields.io/github/followers/WonderingJew?style=for-the-badge&label=Followers" alt="Followers"/>
-  <img src="https://img.shields.io/github/stars/WonderingJew/Felix-MD?style=for-the-badge&label=Stars" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/WonderingJew/Felix-MD?style=for-the-badge&label=Forks" alt="Forks"/>
-  <img src="https://img.shields.io/github/watchers/WonderingJew/Felix-MD?style=for-the-badge&label=Watchers" alt="Watchers"/>
-</div>
-
-
-
 
 
 <div align="center">
