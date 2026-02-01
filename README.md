@@ -23,6 +23,14 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 </div>
 
 
+<p align="center">
+  <a href="https://github.com/Fellobah/Felix-md-tech">
+    <img
+      src="https://readme-typing-svg.demolab.com/?lines=Welcome+to+Felix--MD;Your+WhatsApp+Multi+Device+Bot;Coded+by+Wondering+Jew&font=Orbitron&size=28&pause=1200&color=000000&bg=FFE066&center=true&vCenter=true&width=720"
+      alt="Welcome to Felix-MD"
+    />
+  </a>
+</p>
 
 
 
