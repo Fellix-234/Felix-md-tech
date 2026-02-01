@@ -27,10 +27,12 @@ This is a WhatsApp bot built using the Baileys library for multi-device support,
 
 <!-- Incoming Message -->
 <p align="center">
-  <img
-    src="https://readme-typing-svg.demolab.com/?lines=Hello+👋;Welcome+to+Felix--MD&font=JetBrains+Mono&size=26&pause=1200&color=000000&bg=FFE066&center=true&vCenter=true&width=600"
-    alt="Incoming message"
-  />
+  <a href="https://github.com/Fellobah/Felix-md-tech">
+    <img
+      src="https://readme-typing-svg.demolab.com/?lines=Hello;Welcome+to+Felix--MD&font=JetBrains+Mono&size=26&pause=1200&color=000000&bg=FFE066&center=true&vCenter=true&width=600"
+      alt="Incoming message"
+    />
+  </a>
 </p>
 
 <!-- Typing Indicator -->
