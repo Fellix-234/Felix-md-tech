@@ -70,7 +70,7 @@ app.get("/session/download/:file", (req, res) => {
   }
 });
 
-// Paircode route - serves QR code data
+// Paircode route - serves pairing code and QR data
 app.get("/paircode", (req, res) => {
   try {
     // Set response headers to prevent caching and ensure fresh data
@@ -80,15 +80,20 @@ app.get("/paircode", (req, res) => {
       'Expires': '0'
     });
     
-    // Generate a unique pairing code for QR generation
-    const pairingCode = "FELIX-MD-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    // Generate a 9-digit pairing code (like WhatsApp does)
+    const pairingCode = String(Math.floor(Math.random() * 900000000) + 100000000);
+    
+    // Generate a unique QR string
+    const qrString = "FELIX-MD-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9).toUpperCase();
     
     res.json({ 
-      qrURL: pairingCode,
-      pairingCode: pairingCode,
+      pairingCode: pairingCode,           // 9-digit code for manual entry
+      qrURL: qrString,                     // For QR code generation
       botName: "Felix MD",
       timestamp: new Date().toISOString(),
-      status: "ready"
+      status: "ready",
+      validFor: "60 seconds",
+      method: "Use pairing code for better reliability"
     });
   } catch (error) {
     console.error("Error generating paircode:", error);

@@ -23,7 +23,7 @@
     border: 2px solid #25D366;
     border-radius: 20px;
     padding: 50px;
-    max-width: 500px;
+    max-width: 600px;
     box-shadow: 0 8px 32px rgba(37, 211, 102, 0.1);
     backdrop-filter: blur(10px);
   }
@@ -33,11 +33,129 @@
     font-size: 2.5em;
     text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
   }
+  .method-toggle {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .toggle-btn {
+    padding: 10px 20px;
+    background: rgba(37, 211, 102, 0.2);
+    border: 2px solid #25D366;
+    color: #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  .toggle-btn.active {
+    background: #25D366;
+    color: #000;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+  }
+  .toggle-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Pairing Code Section */
+  .pairing-section {
+    display: block;
+    margin: 30px 0;
+  }
+  .pairing-section.hidden {
+    display: none;
+  }
+  
+  .pairing-code-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #25D366;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px 0;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pairing-code-label {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+  
+  .pairing-code-display {
+    font-size: 2.2em;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #25D366;
+    letter-spacing: 3px;
+    word-break: break-all;
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+    user-select: all;
+  }
+  
+  .code-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .small-btn {
+    padding: 8px 16px;
+    background: rgba(37, 211, 102, 0.3);
+    border: 1px solid #25D366;
+    color: #25D366;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .small-btn:hover {
+    background: #25D366;
+    color: #000;
+  }
+  
+  .pairing-instructions {
+    background: rgba(37, 211, 102, 0.1);
+    border-left: 3px solid #25D366;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .pairing-instructions ol {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .pairing-instructions li {
+    margin: 8px 0;
+  }
+  
+  /* QR Code Section */
+  .qr-section {
+    display: none;
+  }
+  .qr-section.visible {
+    display: block;
+  }
+  
   p { 
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-size: 16px;
     color: #ddd;
   }
+  
   #qrcode { 
     margin: 20px auto;
     padding: 15px;
@@ -49,6 +167,7 @@
   #qrcode canvas, #qrcode img {
     display: block;
   }
+  
   .button-group {
     margin-top: 30px;
     display: flex;
@@ -75,6 +194,7 @@
   button:active {
     transform: translateY(0);
   }
+  
   .status {
     margin-top: 20px;
     padding: 10px;
@@ -99,50 +219,168 @@
     content: " ❌";
     color: #ff4444;
   }
+  
   .info {
     margin-top: 20px;
     font-size: 12px;
     color: #888;
+  }
+  
+  .copy-feedback {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background: #25D366;
+    color: #000;
+    border-radius: 8px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .copy-feedback.show {
+    opacity: 1;
   }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>🤖 Felix MD Bot</h1>
-  <h2>WhatsApp Pairing</h2>
-  <p>Scan this QR code with WhatsApp to link your account with the bot:</p>
+  <h2>WhatsApp Connection</h2>
   
-  <div id="qrcode"></div>
+  <!-- Method Toggle -->
+  <div class="method-toggle">
+    <button class="toggle-btn active" onclick="showMethod('pairing')">📋 Pairing Code</button>
+    <button class="toggle-btn" onclick="showMethod('qr')">📱 QR Code (Optional)</button>
+  </div>
   
-  <div id="status" class="status">Initializing QR code...</div>
+  <!-- Pairing Code Method (Primary) -->
+  <div id="pairing-section" class="pairing-section">
+    <div class="pairing-code-box">
+      <div class="pairing-code-label">🔐 Your Pairing Code:</div>
+      <div id="pairing-code" class="pairing-code-display">Loading...</div>
+      <div class="code-controls">
+        <button class="small-btn" onclick="copyPairingCode()">📋 Copy Code</button>
+        <button class="small-btn" onclick="refreshPairingCode()">🔄 New Code</button>
+      </div>
+    </div>
+    
+    <div class="pairing-instructions">
+      <strong>📲 How to Connect:</strong>
+      <ol>
+        <li>Open <strong>WhatsApp</strong> on your phone</li>
+        <li>Go to <strong>Settings → Linked Devices (or Web & Desktop)</strong></li>
+        <li>Tap <strong>"Link a Device"</strong></li>
+        <li>Enter the 9-digit code above when prompted</li>
+        <li>Device will connect automatically!</li>
+      </ol>
+      <p style="margin-top: 15px; color: #25D366;">
+        ✨ <strong>Tip:</strong> No camera needed! Pairing code works instantly.
+      </p>
+    </div>
+  </div>
   
-  <div class="button-group">
-    <button onclick="refreshQRCode()">🔄 Refresh QR Code</button>
-    <button onclick="copyQRInfo()">📋 Copy Info</button>
+  <!-- QR Code Method (Optional) -->
+  <div id="qr-section" class="qr-section">
+    <p>Scan this QR code with WhatsApp to link your account:</p>
+    <div id="qrcode"></div>
+    <div id="status" class="status">QR code ready</div>
+    <div class="button-group">
+      <button onclick="refreshQRCode()">🔄 Refresh QR Code</button>
+    </div>
+  </div>
+  
+  <div id="status-main" class="status">
+    Initializing connection...
   </div>
   
   <div class="info">
-    <p>💡 <strong>How to connect:</strong></p>
-    <p>1. Open WhatsApp on your phone</p>
-    <p>2. Go to WhatsApp Web settings</p>
-    <p>3. Scan the QR code above</p>
-    <p>⏱️ QR code refreshes every 60 seconds</p>
+    <p>⏱️ Codes refresh every 60 seconds automatically</p>
+    <p>💡 Using pairing code? Just enter the 9-digit code in WhatsApp</p>
   </div>
 </div>
 
+<div id="copy-feedback" class="copy-feedback">✅ Code copied!</div>
+
 <script>
-let qrCodeInstance = null;
-let qrCodeData = "https://example.com/qr";
+let currentMethod = 'pairing';
+let pairingCode = 'LOADING...';
 let refreshInterval = null;
 
+// Show/Hide method sections
+function showMethod(method) {
+  currentMethod = method;
+  
+  // Update buttons
+  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // Show/hide sections
+  if (method === 'pairing') {
+    document.getElementById('pairing-section').classList.remove('hidden');
+    document.getElementById('qr-section').classList.remove('visible');
+  } else {
+    document.getElementById('pairing-section').classList.add('hidden');
+    document.getElementById('qr-section').classList.add('visible');
+    refreshQRCode();
+  }
+}
+
+// Copy pairing code
+function copyPairingCode() {
+  const code = document.getElementById('pairing-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showCopyFeedback();
+  }).catch(err => {
+    alert('❌ Failed to copy code');
+    console.error(err);
+  });
+}
+
+function showCopyFeedback() {
+  const feedback = document.getElementById('copy-feedback');
+  feedback.classList.add('show');
+  setTimeout(() => {
+    feedback.classList.remove('show');
+  }, 2000);
+}
+
+// Refresh pairing code
+async function refreshPairingCode() {
+  try {
+    updateStatus('loading', 'Generating new pairing code...');
+    const response = await fetch('/paircode');
+    
+    if (!response.ok) {
+      throw new Error('Server error: ' + response.status);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.pairingCode) {
+      throw new Error('No pairing code received');
+    }
+    
+    pairingCode = data.pairingCode;
+    document.getElementById('pairing-code').textContent = pairingCode;
+    updateStatus('success', 'Pairing code ready! Valid for 60 seconds.');
+    
+  } catch(err) {
+    console.error('Error fetching pairing code:', err);
+    updateStatus('error', 'Failed to get code: ' + err.message);
+    document.getElementById('pairing-code').textContent = 'ERROR';
+  }
+}
+
+// QR Code generation
 function generateQRCode(data) {
-  // Clear previous QR code
   const qrcodeDiv = document.getElementById('qrcode');
   qrcodeDiv.innerHTML = '';
   
   try {
-    // Generate new QR code
-    qrCodeInstance = new QRCode(qrcodeDiv, {
+    new QRCode(qrcodeDiv, {
       text: data,
       width: 300,
       height: 300,
@@ -160,17 +398,10 @@ function generateQRCode(data) {
   }
 }
 
-function updateStatus(type, message) {
-  const status = document.getElementById('status');
-  status.className = 'status ' + type;
-  status.textContent = message;
-}
-
 async function refreshQRCode() {
   updateStatus('loading', 'Generating new QR code...');
   
   try {
-    // Fetch QR data from server
     const response = await fetch('/paircode');
     
     if (!response.ok) {
@@ -183,35 +414,29 @@ async function refreshQRCode() {
       throw new Error('Invalid QR data from server');
     }
     
-    // Use timestamp to ensure unique data
     const qrData = data.qrURL + '?t=' + Date.now();
     generateQRCode(qrData);
     
   } catch(err) {
     console.error('QR fetch error:', err);
-    // Fallback: Generate QR code with a default message
-    const fallbackData = 'Felix-MD Bot: Waiting for connection - ' + new Date().toLocaleTimeString();
+    const fallbackData = 'Felix-MD Bot: ' + new Date().toLocaleTimeString();
     generateQRCode(fallbackData);
     updateStatus('error', 'Using fallback QR: ' + err.message);
   }
 }
 
-function copyQRInfo() {
-  const info = 'Felix MD Bot QR Code\nScan at: ' + window.location.href + '\nTime: ' + new Date().toLocaleString();
-  navigator.clipboard.writeText(info).then(() => {
-    alert('✅ Info copied to clipboard!');
-  }).catch(err => {
-    console.error('Copy failed:', err);
-    alert('❌ Failed to copy');
-  });
+function updateStatus(type, message) {
+  const statusMain = document.getElementById('status-main');
+  statusMain.className = 'status ' + type;
+  statusMain.textContent = message;
 }
 
 // Initialize on page load
 window.addEventListener('load', function() {
-  refreshQRCode();
+  refreshPairingCode();
   
-  // Refresh QR code every 60 seconds
-  refreshInterval = setInterval(refreshQRCode, 60000);
+  // Refresh pairing code every 60 seconds
+  refreshInterval = setInterval(refreshPairingCode, 60000);
 });
 
 // Cleanup on page unload
@@ -221,13 +446,13 @@ window.addEventListener('beforeunload', function() {
   }
 });
 
-// Handle visibility changes (pause/resume refresh)
+// Handle visibility changes
 document.addEventListener('visibilitychange', function() {
   if (document.hidden && refreshInterval) {
     clearInterval(refreshInterval);
   } else if (!document.hidden) {
-    refreshQRCode();
-    refreshInterval = setInterval(refreshQRCode, 60000);
+    refreshPairingCode();
+    refreshInterval = setInterval(refreshPairingCode, 60000);
   }
 });
 </script>
