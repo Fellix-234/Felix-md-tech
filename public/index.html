@@ -361,6 +361,105 @@
   .copy-feedback.show {
     opacity: 1;
   }
+  
+  /* Session Warning Section */
+  .session-warning-section {
+    display: none;
+    animation: slideIn 0.5s ease;
+  }
+  
+  .session-warning-section.visible {
+    display: block;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .security-warning {
+    background: linear-gradient(135deg, rgba(255, 100, 100, 0.2) 0%, rgba(255, 50, 50, 0.1) 100%);
+    border: 2px solid #ff6464;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .security-warning-header {
+    color: #ff6464;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .security-warning-content {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #ddd;
+  }
+  
+  .warning-item {
+    margin: 10px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  
+  .warning-item::before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+    color: #ff6464;
+  }
+  
+  .session-id-box {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #ff6464;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .session-id-label {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .session-id-display {
+    color: #ff6464;
+    font-size: 13px;
+    word-break: break-all;
+    font-weight: bold;
+    letter-spacing: 1px;
+    user-select: all;
+  }
+  
+  .success-checkmark {
+    color: #25D366;
+    font-size: 18px;
+  }
+  
+  .success-message {
+    color: #25D366;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 </style>
 </head>
 <body>
@@ -443,6 +542,46 @@
   
   <div id="status-main" class="status" style="display:none;"></div>
   
+  <!-- Session Security Warning (shown after successful connection) -->
+  <div id="session-warning-section" class="session-warning-section">
+    <div class="success-message">
+      <span class="success-checkmark">✅</span>
+      <span>WhatsApp Connection Successful!</span>
+    </div>
+    
+    <div class="security-warning">
+      <div class="security-warning-header">
+        🔒 IMPORTANT: Keep Your Session ID Secret
+      </div>
+      <div class="security-warning-content">
+        <div class="warning-item">
+          Your Session ID has been created and is stored securely on this device
+        </div>
+        <div class="warning-item">
+          <strong>NEVER share this ID with anyone</strong> - it contains your WhatsApp authentication
+        </div>
+        <div class="warning-item">
+          <strong>NEVER</strong> paste this in public channels, forums, or with untrusted people
+        </div>
+        <div class="warning-item">
+          If you accidentally share it, <strong>disconnect immediately</strong> from Settings → Linked Devices
+        </div>
+        <div class="warning-item">
+          Only the device owner should have access to this session data
+        </div>
+      </div>
+      
+      <div class="session-id-box">
+        <div class="session-id-label">Your Session ID:</div>
+        <div class="session-id-display" id="session-id-display">Loading...</div>
+      </div>
+      
+      <div style="background: rgba(37, 211, 102, 0.1); border-left: 3px solid #25D366; padding: 12px; border-radius: 5px; margin-top: 15px; font-size: 12px; color: #aaa;">
+        💾 <strong>Backup:</strong> Your session data is saved in <code>session/owner.json</code>. Keep this file safe and never upload it to public repositories.
+      </div>
+    </div>
+  </div>
+  
   <div class="info">
     <p>⏱️ Codes refresh every 60 seconds automatically</p>
     <p>💡 Using pairing code? Just enter the 9-digit code in WhatsApp</p>
@@ -456,6 +595,46 @@ let currentPhoneNumber = '';
 let currentPairingCode = '';
 let currentMethod = 'pairing';
 let refreshInterval = null;
+let sessionCheckInterval = null;
+
+// Start polling for session creation
+function startSessionCheck() {
+  console.log('Starting session check...');
+  
+  if (sessionCheckInterval) clearInterval(sessionCheckInterval);
+  
+  sessionCheckInterval = setInterval(async () => {
+    try {
+      const response = await fetch('/session/info');
+      const data = await response.json();
+      
+      if (data.sessionExists && data.sessionId) {
+        console.log('Session detected!', data.sessionId);
+        showSessionWarning(data.sessionId);
+        clearInterval(sessionCheckInterval);
+      }
+    } catch (err) {
+      console.error('Error checking session:', err);
+    }
+  }, 2000); // Check every 2 seconds
+}
+
+// Show session warning with session ID
+function showSessionWarning(sessionId) {
+  // Hide pairing section
+  document.getElementById('pairing-section').classList.remove('active');
+  document.getElementById('qr-section').classList.remove('visible');
+  document.getElementById('method-toggle').style.display = 'none';
+  
+  // Show session warning
+  document.getElementById('session-warning-section').classList.add('visible');
+  
+  // Update with actual session ID
+  document.getElementById('session-id-display').textContent = sessionId;
+  
+  // Scroll to warning
+  document.getElementById('session-warning-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
 // Phone number validation
 function validatePhoneNumber(phone) {
@@ -546,6 +725,9 @@ async function generatePairingCode() {
     if (refreshInterval) clearInterval(refreshInterval);
     refreshInterval = setInterval(refreshPairingCode, 60000);
     
+    // Start polling for session creation
+    startSessionCheck();
+    
   } catch (err) {
     console.error('Error:', err);
     statusDiv.textContent = 'Error: ' + err.message;
@@ -587,8 +769,10 @@ function changePairingCode() {
   document.getElementById('method-toggle').style.display = 'none';
   document.getElementById('pairing-section').classList.remove('active');
   document.getElementById('qr-section').classList.remove('visible');
+  document.getElementById('session-warning-section').classList.remove('visible');
   
   if (refreshInterval) clearInterval(refreshInterval);
+  if (sessionCheckInterval) clearInterval(sessionCheckInterval);
   
   document.getElementById('phoneInput').focus();
 }

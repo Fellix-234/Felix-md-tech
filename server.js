@@ -25,6 +25,42 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Session info route - returns session ID if session exists
+app.get("/session/info", (req, res) => {
+  try {
+    const sessionPath = path.join(__dirname, "session", "owner.json");
+    
+    if (!fs.existsSync(sessionPath)) {
+      return res.status(404).json({ 
+        error: "Session not created yet",
+        sessionExists: false
+      });
+    }
+
+    // Read the session file to get phone number (Session ID)
+    const sessionData = JSON.parse(fs.readFileSync(sessionPath, 'utf8'));
+    const phoneNumber = sessionData.me?.id || sessionData.phoneNumber || null;
+    
+    if (!phoneNumber) {
+      return res.json({ 
+        error: "Session incomplete",
+        sessionExists: true,
+        sessionId: null
+      });
+    }
+
+    res.json({
+      success: true,
+      sessionExists: true,
+      sessionId: phoneNumber,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error("Error retrieving session info:", error);
+    res.status(500).json({ error: "Failed to retrieve session info" });
+  }
+});
+
 // Session route - serves session data
 app.get("/session", (req, res) => {
   try {
