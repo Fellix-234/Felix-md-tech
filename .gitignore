@@ -1,22 +1,44 @@
-# Node modules
+# Node modules and dependencies
 node_modules/
+package-lock.json
+npm-debug.log*
+yarn-error.log*
 
 # Session files
 session.json
+session/
 *.session
+
+# Environment files
+.env
+.env.local
+.env.*.local
 
 # Logs
 *.log
 logs/
-npm-debug.log*
 
-# OS files
+# OSfiles
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # IDE/editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.sublime-*
+
+# Build and dist
+dist/
+build/
+.next/
 
 # Panel uploads
 uploads/
