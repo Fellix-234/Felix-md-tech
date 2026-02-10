@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix-MD Pairing Code</title>
+<style>
+  body { background:#121212; color:#fff; text-align:center; font-family:Arial, sans-serif; padding: 50px; }
+  h1 { color: #25D366; }
+  #qrcode { margin-top:30px; box-shadow:0 0 20px #25D366; border-radius:15px; width: 300px; }
+  button { margin-top:20px; padding:10px 20px; background:#25D366; color:white; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
+  button:hover { background:#128C7E; }
+</style>
+</head>
+<body>
+<h1>Felix-MD Pair Code Generator</h1>
+<p>Scan this QR code to link your WhatsApp account with the bot:</p>
+<img id="qrcode" src="" alt="QR Code">
+<br>
+<button onclick="refreshQRCode()">Generate New QR Code</button>
+
+<script>
+async function refreshQRCode() {
+  try {
+    const res = await fetch('/paircode');
+    const data = await res.json();
+    document.getElementById('qrcode').src = data.qrURL;
+  } catch(err) {
+    alert('Failed to fetch QR code');
+    console.error(err);
+  }
+}
+
+// Load QR code on page load
+refreshQRCode();
+</script>
+</body>
+</html>
