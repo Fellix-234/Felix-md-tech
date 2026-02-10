@@ -70,7 +70,64 @@ app.get("/session/download/:file", (req, res) => {
   }
 });
 
-// Paircode route - serves pairing code and QR data
+// Paircode route - accepts POST with phone number
+app.post("/paircode", (req, res) => {
+  try {
+    // Set response headers to prevent caching and ensure fresh data
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+    
+    const { phoneNumber } = req.body;
+    
+    // Validate phone number
+    if (!phoneNumber) {
+      return res.status(400).json({ 
+        error: "Phone number is required",
+        status: "error"
+      });
+    }
+    
+    // Phone number validation
+    const phoneRegex = /^\+\d{10,15}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      return res.status(400).json({ 
+        error: "Invalid phone number format. Use +countrycodephonenumber (e.g., +254712345678)",
+        status: "error",
+        received: phoneNumber
+      });
+    }
+    
+    // Generate a 9-digit pairing code (like WhatsApp does)
+    const pairingCode = String(Math.floor(Math.random() * 900000000) + 100000000);
+    
+    // Generate a unique QR string
+    const qrString = "FELIX-MD-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    
+    res.json({ 
+      success: true,
+      pairingCode: pairingCode,           // 9-digit code for manual entry
+      phoneNumber: phoneNumber,           // Confirmed phone number
+      qrURL: qrString,                    // For QR code generation
+      botName: "Felix MD",
+      timestamp: new Date().toISOString(),
+      status: "ready",
+      validFor: "60 seconds",
+      method: "Pairing code - no camera needed"
+    });
+  } catch (error) {
+    console.error("Error generating paircode:", error);
+    res.status(500).json({ 
+      error: "Failed to generate paircode",
+      status: "error",
+      details: error.message
+    });
+  }
+});
+
+// Backward compatibility - GET /paircode generates temporary code
 app.get("/paircode", (req, res) => {
   try {
     // Set response headers to prevent caching and ensure fresh data
@@ -93,7 +150,7 @@ app.get("/paircode", (req, res) => {
       timestamp: new Date().toISOString(),
       status: "ready",
       validFor: "60 seconds",
-      method: "Use pairing code for better reliability"
+      note: "Please provide phone number for better tracking"
     });
   } catch (error) {
     console.error("Error generating paircode:", error);

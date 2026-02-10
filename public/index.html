@@ -33,6 +33,107 @@
     font-size: 2.5em;
     text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
   }
+  h2 {
+    color: #ddd;
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  /* Phone Input Section */
+  .phone-input-section {
+    display: block;
+  }
+  .phone-input-section.hidden {
+    display: none;
+  }
+  
+  .input-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #25D366;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px 0;
+  }
+  
+  .input-label {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  #phoneInput {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #25D366;
+    border-radius: 8px;
+    color: #25D366;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+  }
+  
+  #phoneInput::placeholder {
+    color: rgba(37, 211, 102, 0.5);
+  }
+  
+  #phoneInput:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+  }
+  
+  .phone-hint {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+    text-align: left;
+  }
+  
+  .phone-examples {
+    font-size: 11px;
+    color: #666;
+    margin-top: 10px;
+    text-align: left;
+    background: rgba(37, 211, 102, 0.05);
+    padding: 10px;
+    border-left: 2px solid #25D366;
+    border-radius: 4px;
+  }
+  
+  .phone-examples strong {
+    color: #25D366;
+  }
+  
+  .generate-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  }
+  
+  .generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  }
+  
+  .generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  /* Method Toggle */
   .method-toggle {
     margin: 20px 0;
     display: flex;
@@ -40,6 +141,7 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+  
   .toggle-btn {
     padding: 10px 20px;
     background: rgba(37, 211, 102, 0.2);
@@ -50,22 +152,23 @@
     transition: all 0.3s ease;
     font-weight: bold;
   }
+  
   .toggle-btn.active {
     background: #25D366;
     color: #000;
     box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
   }
+  
   .toggle-btn:hover {
     transform: translateY(-2px);
   }
   
   /* Pairing Code Section */
   .pairing-section {
-    display: block;
-    margin: 30px 0;
-  }
-  .pairing-section.hidden {
     display: none;
+  }
+  .pairing-section.active {
+    display: block;
   }
   
   .pairing-code-box {
@@ -96,6 +199,13 @@
     word-break: break-all;
     text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
     user-select: all;
+  }
+  
+  .phone-display {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-top: 10px;
+    font-style: italic;
   }
   
   .code-controls {
@@ -142,14 +252,6 @@
     margin: 8px 0;
   }
   
-  /* QR Code Section */
-  .qr-section {
-    display: none;
-  }
-  .qr-section.visible {
-    display: block;
-  }
-  
   p { 
     margin-bottom: 15px;
     font-size: 16px;
@@ -164,6 +266,15 @@
     box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
     display: inline-block;
   }
+  
+  .qr-section {
+    display: none;
+  }
+  
+  .qr-section.visible {
+    display: block;
+  }
+  
   #qrcode canvas, #qrcode img {
     display: block;
   }
@@ -175,6 +286,7 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+  
   button { 
     padding: 12px 24px;
     background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
@@ -187,10 +299,12 @@
     font-weight: bold;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   }
+  
   button:hover { 
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
   }
+  
   button:active {
     transform: translateY(0);
   }
@@ -205,16 +319,20 @@
     font-size: 12px;
     color: #aaa;
   }
+  
   .status.loading::after {
     content: " ⏳";
   }
+  
   .status.success::after {
     content: " ✅";
     color: #25D366;
   }
+  
   .status.error {
     border-left-color: #ff4444;
   }
+  
   .status.error::after {
     content: " ❌";
     color: #ff4444;
@@ -250,20 +368,51 @@
   <h1>🤖 Felix MD Bot</h1>
   <h2>WhatsApp Connection</h2>
   
-  <!-- Method Toggle -->
-  <div class="method-toggle">
+  <!-- Phone Input Section -->
+  <div id="phone-input-section" class="phone-input-section">
+    <div class="input-box">
+      <div class="input-label">📱 Enter Your Phone Number:</div>
+      <input 
+        type="tel" 
+        id="phoneInput" 
+        placeholder="+254712345678"
+        autocomplete="tel"
+      >
+      <div class="phone-hint">
+        Include country code. Examples below:
+      </div>
+      <div class="phone-examples">
+        <strong>Kenya:</strong> +254712345678<br>
+        <strong>Nigeria:</strong> +234812345678<br>
+        <strong>USA:</strong> +12125551234<br>
+        <strong>UK:</strong> +441234567890<br>
+        <strong>Ghana:</strong> +233555123456
+      </div>
+    </div>
+    
+    <button class="generate-btn" onclick="generatePairingCode()">
+      🔐 Generate Pairing Code
+    </button>
+    
+    <div id="phone-status" class="status" style="display:none;"></div>
+  </div>
+  
+  <!-- Method Toggle (shown after phone entered) -->
+  <div id="method-toggle" class="method-toggle" style="display:none;">
     <button class="toggle-btn active" onclick="showMethod('pairing')">📋 Pairing Code</button>
     <button class="toggle-btn" onclick="showMethod('qr')">📱 QR Code (Optional)</button>
   </div>
   
-  <!-- Pairing Code Method (Primary) -->
+  <!-- Pairing Code Section -->
   <div id="pairing-section" class="pairing-section">
     <div class="pairing-code-box">
       <div class="pairing-code-label">🔐 Your Pairing Code:</div>
       <div id="pairing-code" class="pairing-code-display">Loading...</div>
+      <div class="phone-display" id="phone-display"></div>
       <div class="code-controls">
         <button class="small-btn" onclick="copyPairingCode()">📋 Copy Code</button>
         <button class="small-btn" onclick="refreshPairingCode()">🔄 New Code</button>
+        <button class="small-btn" onclick="changePairingCode()">📱 Change Number</button>
       </div>
     </div>
     
@@ -282,19 +431,17 @@
     </div>
   </div>
   
-  <!-- QR Code Method (Optional) -->
+  <!-- QR Code Section -->
   <div id="qr-section" class="qr-section">
     <p>Scan this QR code with WhatsApp to link your account:</p>
     <div id="qrcode"></div>
-    <div id="status" class="status">QR code ready</div>
+    <div id="status-qr" class="status">QR code ready</div>
     <div class="button-group">
       <button onclick="refreshQRCode()">🔄 Refresh QR Code</button>
     </div>
   </div>
   
-  <div id="status-main" class="status">
-    Initializing connection...
-  </div>
+  <div id="status-main" class="status" style="display:none;"></div>
   
   <div class="info">
     <p>⏱️ Codes refresh every 60 seconds automatically</p>
@@ -305,53 +452,66 @@
 <div id="copy-feedback" class="copy-feedback">✅ Code copied!</div>
 
 <script>
+let currentPhoneNumber = '';
+let currentPairingCode = '';
 let currentMethod = 'pairing';
-let pairingCode = 'LOADING...';
 let refreshInterval = null;
 
-// Show/Hide method sections
-function showMethod(method) {
-  currentMethod = method;
+// Phone number validation
+function validatePhoneNumber(phone) {
+  // Remove all non-digit characters except leading +
+  const cleaned = phone.replace(/[^+\d]/g, '');
   
-  // Update buttons
-  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  
-  // Show/hide sections
-  if (method === 'pairing') {
-    document.getElementById('pairing-section').classList.remove('hidden');
-    document.getElementById('qr-section').classList.remove('visible');
-  } else {
-    document.getElementById('pairing-section').classList.add('hidden');
-    document.getElementById('qr-section').classList.add('visible');
-    refreshQRCode();
+  // Check if it starts with +
+  if (!cleaned.startsWith('+')) {
+    return { valid: false, error: 'Phone number must start with +' };
   }
+  
+  // Remove + and check length (should be 10-15 digits)
+  const digits = cleaned.substring(1);
+  if (digits.length < 10 || digits.length > 15) {
+    return { valid: false, error: 'Phone number must be 10-15 digits (after country code)' };
+  }
+  
+  return { valid: true, phone: cleaned };
 }
 
-// Copy pairing code
-function copyPairingCode() {
-  const code = document.getElementById('pairing-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    showCopyFeedback();
-  }).catch(err => {
-    alert('❌ Failed to copy code');
-    console.error(err);
-  });
+// Format phone display
+function formatPhoneDisplay(phone) {
+  return phone.replace(/(\d{1})(\d{3})(\d{3})(\d{4})/, '$1 $2 $3 $4');
 }
 
-function showCopyFeedback() {
-  const feedback = document.getElementById('copy-feedback');
-  feedback.classList.add('show');
-  setTimeout(() => {
-    feedback.classList.remove('show');
-  }, 2000);
-}
-
-// Refresh pairing code
-async function refreshPairingCode() {
+// Generate pairing code
+async function generatePairingCode() {
+  const phoneInput = document.getElementById('phoneInput').value.trim();
+  const statusDiv = document.getElementById('phone-status');
+  
+  if (!phoneInput) {
+    statusDiv.textContent = 'Please enter a phone number';
+    statusDiv.className = 'status error';
+    statusDiv.style.display = 'block';
+    return;
+  }
+  
+  const validation = validatePhoneNumber(phoneInput);
+  if (!validation.valid) {
+    statusDiv.textContent = validation.error;
+    statusDiv.className = 'status error';
+    statusDiv.style.display = 'block';
+    return;
+  }
+  
+  currentPhoneNumber = validation.phone;
+  statusDiv.textContent = 'Generating pairing code...';
+  statusDiv.className = 'status loading';
+  statusDiv.style.display = 'block';
+  
   try {
-    updateStatus('loading', 'Generating new pairing code...');
-    const response = await fetch('/paircode');
+    const response = await fetch('/paircode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phoneNumber: currentPhoneNumber })
+    });
     
     if (!response.ok) {
       throw new Error('Server error: ' + response.status);
@@ -363,18 +523,112 @@ async function refreshPairingCode() {
       throw new Error('No pairing code received');
     }
     
-    pairingCode = data.pairingCode;
-    document.getElementById('pairing-code').textContent = pairingCode;
-    updateStatus('success', 'Pairing code ready! Valid for 60 seconds.');
+    currentPairingCode = data.pairingCode;
     
-  } catch(err) {
-    console.error('Error fetching pairing code:', err);
-    updateStatus('error', 'Failed to get code: ' + err.message);
-    document.getElementById('pairing-code').textContent = 'ERROR';
+    // Hide phone input section
+    document.getElementById('phone-input-section').classList.add('hidden');
+    document.getElementById('phone-input-section').style.display = 'none';
+    
+    // Show method toggle
+    document.getElementById('method-toggle').style.display = 'flex';
+    
+    // Show pairing section
+    document.getElementById('pairing-section').classList.add('active');
+    
+    // Update display
+    document.getElementById('pairing-code').textContent = currentPairingCode;
+    document.getElementById('phone-display').textContent = `Phone: ${formatPhoneDisplay(currentPhoneNumber)}`;
+    
+    statusDiv.textContent = 'Pairing code generated! Valid for 60 seconds.';
+    statusDiv.className = 'status success';
+    
+    // Start refresh interval
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshInterval = setInterval(refreshPairingCode, 60000);
+    
+  } catch (err) {
+    console.error('Error:', err);
+    statusDiv.textContent = 'Error: ' + err.message;
+    statusDiv.className = 'status error';
   }
 }
 
-// QR Code generation
+// Refresh pairing code
+async function refreshPairingCode() {
+  if (!currentPhoneNumber) return;
+  
+  try {
+    const response = await fetch('/paircode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phoneNumber: currentPhoneNumber })
+    });
+    
+    const data = await response.json();
+    currentPairingCode = data.pairingCode;
+    document.getElementById('pairing-code').textContent = currentPairingCode;
+    
+  } catch (err) {
+    console.error('Error refreshing code:', err);
+  }
+}
+
+// Change phone number
+function changePairingCode() {
+  // Clear current data
+  currentPhoneNumber = '';
+  currentPairingCode = '';
+  document.getElementById('phoneInput').value = '';
+  document.getElementById('phone-status').style.display = 'none';
+  
+  // Show phone input, hide method toggle and pairing section
+  document.getElementById('phone-input-section').classList.remove('hidden');
+  document.getElementById('phone-input-section').style.display = 'block';
+  document.getElementById('method-toggle').style.display = 'none';
+  document.getElementById('pairing-section').classList.remove('active');
+  document.getElementById('qr-section').classList.remove('visible');
+  
+  if (refreshInterval) clearInterval(refreshInterval);
+  
+  document.getElementById('phoneInput').focus();
+}
+
+// Copy pairing code
+function copyPairingCode() {
+  const code = document.getElementById('pairing-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showCopyFeedback();
+  }).catch(err => {
+    alert('❌ Failed to copy code');
+  });
+}
+
+function showCopyFeedback() {
+  const feedback = document.getElementById('copy-feedback');
+  feedback.classList.add('show');
+  setTimeout(() => {
+    feedback.classList.remove('show');
+  }, 2000);
+}
+
+// Show different method
+function showMethod(method) {
+  currentMethod = method;
+  
+  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  if (method === 'pairing') {
+    document.getElementById('pairing-section').classList.add('active');
+    document.getElementById('qr-section').classList.remove('visible');
+  } else {
+    document.getElementById('pairing-section').classList.remove('active');
+    document.getElementById('qr-section').classList.add('visible');
+    refreshQRCode();
+  }
+}
+
+// QR Code functions
 function generateQRCode(data) {
   const qrcodeDiv = document.getElementById('qrcode');
   qrcodeDiv.innerHTML = '';
@@ -389,71 +643,44 @@ function generateQRCode(data) {
       correctLevel: QRCode.CorrectLevel.H
     });
     
-    updateStatus('success', 'QR Code ready! Scan to connect your WhatsApp account.');
     return true;
   } catch(err) {
-    console.error('QR Code generation error:', err);
-    updateStatus('error', 'Failed to generate QR code: ' + err.message);
+    console.error('QR Code error:', err);
     return false;
   }
 }
 
 async function refreshQRCode() {
-  updateStatus('loading', 'Generating new QR code...');
+  if (!currentPhoneNumber) return;
   
   try {
-    const response = await fetch('/paircode');
-    
-    if (!response.ok) {
-      throw new Error('Server error: ' + response.status);
-    }
+    const response = await fetch('/paircode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phoneNumber: currentPhoneNumber })
+    });
     
     const data = await response.json();
-    
-    if (!data.qrURL) {
-      throw new Error('Invalid QR data from server');
-    }
-    
     const qrData = data.qrURL + '?t=' + Date.now();
     generateQRCode(qrData);
     
   } catch(err) {
-    console.error('QR fetch error:', err);
-    const fallbackData = 'Felix-MD Bot: ' + new Date().toLocaleTimeString();
-    generateQRCode(fallbackData);
-    updateStatus('error', 'Using fallback QR: ' + err.message);
+    console.error('Error:', err);
   }
 }
 
-function updateStatus(type, message) {
-  const statusMain = document.getElementById('status-main');
-  statusMain.className = 'status ' + type;
-  statusMain.textContent = message;
-}
-
-// Initialize on page load
+// Focus on input when page loads
 window.addEventListener('load', function() {
-  refreshPairingCode();
-  
-  // Refresh pairing code every 60 seconds
-  refreshInterval = setInterval(refreshPairingCode, 60000);
+  document.getElementById('phoneInput').focus();
 });
 
-// Cleanup on page unload
-window.addEventListener('beforeunload', function() {
-  if (refreshInterval) {
-    clearInterval(refreshInterval);
-  }
-});
-
-// Handle visibility changes
-document.addEventListener('visibilitychange', function() {
-  if (document.hidden && refreshInterval) {
-    clearInterval(refreshInterval);
-  } else if (!document.hidden) {
-    refreshPairingCode();
-    refreshInterval = setInterval(refreshPairingCode, 60000);
-  }
+// Allow Enter key to submit
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('phoneInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      generatePairingCode();
+    }
+  });
 });
 </script>
 </body>
