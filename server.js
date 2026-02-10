@@ -73,11 +73,22 @@ app.get("/session/download/:file", (req, res) => {
 // Paircode route - serves QR code data
 app.get("/paircode", (req, res) => {
   try {
-    // Generate a QR code URL with timestamp to ensure freshness
-    const qrURL = "https://files.catbox.moe/2vn3xl.png?" + Date.now();
+    // Set response headers to prevent caching and ensure fresh data
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+    
+    // Generate a unique pairing code for QR generation
+    const pairingCode = "FELIX-MD-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9).toUpperCase();
+    
     res.json({ 
-      qrURL: qrURL,
-      timestamp: new Date().toISOString()
+      qrURL: pairingCode,
+      pairingCode: pairingCode,
+      botName: "Felix MD",
+      timestamp: new Date().toISOString(),
+      status: "ready"
     });
   } catch (error) {
     console.error("Error generating paircode:", error);

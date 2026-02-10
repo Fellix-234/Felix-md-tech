@@ -4,35 +4,232 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felix-MD Pairing Code</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-  body { background:#121212; color:#fff; text-align:center; font-family:Arial, sans-serif; padding: 50px; }
-  h1 { color: #25D366; }
-  #qrcode { margin-top:30px; box-shadow:0 0 20px #25D366; border-radius:15px; width: 300px; }
-  button { margin-top:20px; padding:10px 20px; background:#25D366; color:white; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
-  button:hover { background:#128C7E; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    color: #fff; 
+    text-align: center; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    background: rgba(37, 211, 102, 0.05);
+    border: 2px solid #25D366;
+    border-radius: 20px;
+    padding: 50px;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(37, 211, 102, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  h1 { 
+    color: #25D366;
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+  }
+  p { 
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #ddd;
+  }
+  #qrcode { 
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(37, 211, 102, 0.4);
+    display: inline-block;
+  }
+  #qrcode canvas, #qrcode img {
+    display: block;
+  }
+  .button-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  button { 
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  }
+  button:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  }
+  button:active {
+    transform: translateY(0);
+  }
+  .status {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(37, 211, 102, 0.1);
+    border-left: 3px solid #25D366;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 12px;
+    color: #aaa;
+  }
+  .status.loading::after {
+    content: " ⏳";
+  }
+  .status.success::after {
+    content: " ✅";
+    color: #25D366;
+  }
+  .status.error {
+    border-left-color: #ff4444;
+  }
+  .status.error::after {
+    content: " ❌";
+    color: #ff4444;
+  }
+  .info {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #888;
+  }
 </style>
 </head>
 <body>
-<h1>Felix-MD Pair Code Generator</h1>
-<p>Scan this QR code to link your WhatsApp account with the bot:</p>
-<img id="qrcode" src="" alt="QR Code">
-<br>
-<button onclick="refreshQRCode()">Generate New QR Code</button>
+<div class="container">
+  <h1>🤖 Felix MD Bot</h1>
+  <h2>WhatsApp Pairing</h2>
+  <p>Scan this QR code with WhatsApp to link your account with the bot:</p>
+  
+  <div id="qrcode"></div>
+  
+  <div id="status" class="status">Initializing QR code...</div>
+  
+  <div class="button-group">
+    <button onclick="refreshQRCode()">🔄 Refresh QR Code</button>
+    <button onclick="copyQRInfo()">📋 Copy Info</button>
+  </div>
+  
+  <div class="info">
+    <p>💡 <strong>How to connect:</strong></p>
+    <p>1. Open WhatsApp on your phone</p>
+    <p>2. Go to WhatsApp Web settings</p>
+    <p>3. Scan the QR code above</p>
+    <p>⏱️ QR code refreshes every 60 seconds</p>
+  </div>
+</div>
 
 <script>
-async function refreshQRCode() {
+let qrCodeInstance = null;
+let qrCodeData = "https://example.com/qr";
+let refreshInterval = null;
+
+function generateQRCode(data) {
+  // Clear previous QR code
+  const qrcodeDiv = document.getElementById('qrcode');
+  qrcodeDiv.innerHTML = '';
+  
   try {
-    const res = await fetch('/paircode');
-    const data = await res.json();
-    document.getElementById('qrcode').src = data.qrURL;
+    // Generate new QR code
+    qrCodeInstance = new QRCode(qrcodeDiv, {
+      text: data,
+      width: 300,
+      height: 300,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    updateStatus('success', 'QR Code ready! Scan to connect your WhatsApp account.');
+    return true;
   } catch(err) {
-    alert('Failed to fetch QR code');
-    console.error(err);
+    console.error('QR Code generation error:', err);
+    updateStatus('error', 'Failed to generate QR code: ' + err.message);
+    return false;
   }
 }
 
-// Load QR code on page load
-refreshQRCode();
+function updateStatus(type, message) {
+  const status = document.getElementById('status');
+  status.className = 'status ' + type;
+  status.textContent = message;
+}
+
+async function refreshQRCode() {
+  updateStatus('loading', 'Generating new QR code...');
+  
+  try {
+    // Fetch QR data from server
+    const response = await fetch('/paircode');
+    
+    if (!response.ok) {
+      throw new Error('Server error: ' + response.status);
+    }
+    
+    const data = await response.json();
+    
+    if (!data.qrURL) {
+      throw new Error('Invalid QR data from server');
+    }
+    
+    // Use timestamp to ensure unique data
+    const qrData = data.qrURL + '?t=' + Date.now();
+    generateQRCode(qrData);
+    
+  } catch(err) {
+    console.error('QR fetch error:', err);
+    // Fallback: Generate QR code with a default message
+    const fallbackData = 'Felix-MD Bot: Waiting for connection - ' + new Date().toLocaleTimeString();
+    generateQRCode(fallbackData);
+    updateStatus('error', 'Using fallback QR: ' + err.message);
+  }
+}
+
+function copyQRInfo() {
+  const info = 'Felix MD Bot QR Code\nScan at: ' + window.location.href + '\nTime: ' + new Date().toLocaleString();
+  navigator.clipboard.writeText(info).then(() => {
+    alert('✅ Info copied to clipboard!');
+  }).catch(err => {
+    console.error('Copy failed:', err);
+    alert('❌ Failed to copy');
+  });
+}
+
+// Initialize on page load
+window.addEventListener('load', function() {
+  refreshQRCode();
+  
+  // Refresh QR code every 60 seconds
+  refreshInterval = setInterval(refreshQRCode, 60000);
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', function() {
+  if (refreshInterval) {
+    clearInterval(refreshInterval);
+  }
+});
+
+// Handle visibility changes (pause/resume refresh)
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden && refreshInterval) {
+    clearInterval(refreshInterval);
+  } else if (!document.hidden) {
+    refreshQRCode();
+    refreshInterval = setInterval(refreshQRCode, 60000);
+  }
+});
 </script>
 </body>
 </html>
