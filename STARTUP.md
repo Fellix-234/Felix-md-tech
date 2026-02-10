@@ -36,9 +36,19 @@ node index.js
 
 ### What to do:
 1. Open `http://localhost:3000` in your browser
-2. Scan the displayed QR code using WhatsApp on your phone
-3. Select "Link to a phone" / "WhatsApp Web"
-4. Wait for connection confirmation in the bot terminal
+2. See the 9-digit pairing code displayed
+3. On your phone in WhatsApp:
+   - Settings → Linked Devices (or Web & Desktop)
+   - Tap "Link a Device"
+   - Enter the 9-digit code
+4. Done! Instant connection
+5. Session files are automatically saved to `session/` folder
+
+**📍 For detailed session management info**: See [SESSION.md](SESSION.md)
+
+**Or if you prefer QR:**
+- Click the "📱 QR Code (Optional)" tab
+- Scan with WhatsApp as before
 
 ## File Structure
 
@@ -175,9 +185,34 @@ pkill -f "node" # ⚠️ Kills all Node processes
 - Check logs: `logs/server.log` and `logs/bot.log`
 - Verify WhatsApp is not connected elsewhere
 - Ensure correct WhatsApp version on phone
-- Try scanning QR code fresh (refresh page)
+- Try scanning pairing code fresh (refresh page)
+
+## 📚 Related Documentation
+
+- **[SESSION.md](SESSION.md)** - Session management & where session ID is located after WhatsApp linking
+- **[SOUND_EFFECTS.md](SOUND_EFFECTS.md)** - Audio features and sound setup
+- **[README.md](README.md)** - General bot information
+- **[.env Configuration](.env)** - Environment variables
+
+## Session Location After Linking
+
+After you link your WhatsApp account using the pairing code:
+
+✅ **Session files are saved to**: `session/` folder
+- `session/creds.json` - Your authentication credentials
+- `session/owner.json` - Session metadata including phone number
+- `session/signal-store/` - Encryption keys
+
+📍 **Finding your Session ID**:
+1. Link WhatsApp using pairing code on `http://localhost:3000`
+2. Check `session/owner.json` for your phone number
+3. Update `.env` file: `SESSION_ID=YourPhoneNumber`
+
+For complete session management guide: **[See SESSION.md](SESSION.md)**
 
 ---
 
 **Status**: ✅ Bot Ready
 **Last Updated**: 2026-02-10
+**Session Location**: `/workspaces/Felix-md-tech/session/`
+**Next Step**: [Link WhatsApp](http://localhost:3000) → Check [SESSION.md](SESSION.md)
