@@ -12,6 +12,17 @@ if (!fs.existsSync(sessionDir)) {
   fs.mkdirSync(sessionDir, { recursive: true });
 }
 
+// Initialize bot components (directories, audio, etc.)
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+try {
+  const { createRequire } = await import('module');
+  const require = createRequire(import.meta.url);
+  const init = require('./utils/init.js');
+  init();
+} catch (err) {
+  console.log('⚠️  Initialization module not available');
+}
+
 async function startBot() {
   try {
     console.log(chalk.blue('🤖 Starting Felix MD Bot...'));
@@ -41,6 +52,7 @@ async function startBot() {
       // Connection established
       if (connection === "open") {
         console.log(chalk.green("✅ Felix MD Bot connected successfully!"));
+        console.log(chalk.cyan("🎵 Bot ready! Sound effects enabled."));
       }
 
       // Handle disconnection
