@@ -16,6 +16,8 @@ if (!fs.existsSync(sessionDir)) {
 const require = createRequire(import.meta.url);
 const settings = require('./settings.js');
 
+const defaultBotImageUrl = 'https://files.catbox.moe/cs1vep.jpg';
+
 function getPairingNumber() {
   const candidate =
     process.env.PAIRING_NUMBER ||
@@ -25,6 +27,52 @@ function getPairingNumber() {
     '';
 
   return String(candidate).replace(/\D/g, '');
+}
+
+function getOwnerJid() {
+  const ownerNumber = getPairingNumber();
+  return ownerNumber ? `${ownerNumber}@s.whatsapp.net` : null;
+}
+
+function logPairingCode(pairingNumber, code) {
+  if (!code) return;
+  const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
+  console.log(chalk.yellow('\n================= PAIRING CODE ================='));
+  console.log(chalk.yellow(`📱 Number: +${pairingNumber}`));
+  console.log(chalk.yellow(`🔐 Code: ${formatted}`));
+  console.log(chalk.yellow('================================================\n'));
+  console.log(chalk.cyan('📲 On WhatsApp: Linked Devices -> Link a Device -> Enter pairing code\n'));
+}
+
+async function sendStartupMessage(sock) {
+  const ownerJid = getOwnerJid();
+  if (!ownerJid) {
+    console.log(chalk.yellow('ℹ️ Owner number not set. Startup message was not sent.'));
+    return;
+  }
+
+  const caption = [
+    '✅ Felix MD Bot started successfully!',
+    `🤖 Bot: ${settings?.botName || 'Felix MD'}`,
+    `📦 Version: ${settings?.version || 'unknown'}`,
+    '🟢 Status: Online'
+  ].join('\n');
+
+  try {
+    await sock.sendMessage(ownerJid, {
+      image: { url: settings?.botImageUrl || defaultBotImageUrl },
+      caption
+    });
+    console.log(chalk.green(`✅ Startup message sent to ${ownerJid}`));
+  } catch (err) {
+    console.log(chalk.red(`❌ Failed to send startup image message: ${err?.message || err}`));
+    try {
+      await sock.sendMessage(ownerJid, { text: caption });
+      console.log(chalk.green(`✅ Fallback startup text sent to ${ownerJid}`));
+    } catch (fallbackErr) {
+      console.log(chalk.red(`❌ Failed to send startup text message: ${fallbackErr?.message || fallbackErr}`));
+    }
+  }
 }
 
 // Initialize bot components (directories, audio, etc.)
@@ -52,6 +100,7 @@ async function startBot() {
     });
 
     let pairingCodeRequested = false;
+    let startupMessageSent = false;
 
     if (!state.creds.registered) {
       const pairingNumber = getPairingNumber();
@@ -59,9 +108,7 @@ async function startBot() {
       if (pairingNumber) {
         try {
           const code = await sock.requestPairingCode(pairingNumber);
-          const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
-          console.log(chalk.yellow(`\n🔐 Pairing code for +${pairingNumber}: ${formatted}`));
-          console.log(chalk.cyan('📲 On WhatsApp: Linked Devices -> Link a Device -> Enter pairing code\n'));
+          logPairingCode(pairingNumber, code);
           pairingCodeRequested = true;
         } catch (pairErr) {
           console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
@@ -90,8 +137,7 @@ async function startBot() {
         if (pairingNumber) {
           try {
             const code = await sock.requestPairingCode(pairingNumber);
-            const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
-            console.log(chalk.yellow(`\n🔐 Pairing code for +${pairingNumber}: ${formatted}`));
+            logPairingCode(pairingNumber, code);
             pairingCodeRequested = true;
           } catch (pairErr) {
             console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
@@ -103,6 +149,11 @@ async function startBot() {
       if (connection === "open") {
         console.log(chalk.green("✅ Felix MD Bot connected successfully!"));
         console.log(chalk.cyan("🎵 Bot ready! Sound effects enabled."));
+
+        if (!startupMessageSent) {
+          await sendStartupMessage(sock);
+          startupMessageSent = true;
+        }
       }
 
       // Handle disconnection
