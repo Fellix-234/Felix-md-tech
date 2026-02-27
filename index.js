@@ -6,15 +6,13 @@ import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeys
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
+import settings from './settings.js';
 
 // Ensure session directory exists
 const sessionDir = './session';
 if (!fs.existsSync(sessionDir)) {
   fs.mkdirSync(sessionDir, { recursive: true });
 }
-
-const require = createRequire(import.meta.url);
-const settings = require('./settings.js');
 
 const defaultBotImageUrl = 'https://files.catbox.moe/cs1vep.jpg';
 
@@ -75,6 +73,8 @@ async function sendStartupMessage(sock) {
   }
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // Initialize bot components (directories, audio, etc.)
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 try {
@@ -102,21 +102,28 @@ async function startBot() {
     let pairingCodeRequested = false;
     let startupMessageSent = false;
 
-    if (!state.creds.registered) {
+    async function requestPairingCodeWithRetry() {
       const pairingNumber = getPairingNumber();
+      if (!pairingNumber) {
+        console.log(chalk.yellow('ℹ️ Pairing number not configured. Set PAIRING_NUMBER or OWNER_NUMBER in .env to log pairing code.'));
+        return;
+      }
 
-      if (pairingNumber) {
+      for (let attempt = 1; attempt <= 3; attempt += 1) {
         try {
           const code = await sock.requestPairingCode(pairingNumber);
           logPairingCode(pairingNumber, code);
           pairingCodeRequested = true;
+          return;
         } catch (pairErr) {
-          console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
-          console.log(chalk.yellow('ℹ️ Falling back to QR code in terminal.'));
+          console.log(chalk.red(`❌ Failed to request pairing code (attempt ${attempt}/3): ${pairErr?.message || pairErr}`));
+          if (attempt < 3) {
+            await sleep(4000);
+          }
         }
-      } else {
-        console.log(chalk.yellow('ℹ️ Pairing number not configured. Set PAIRING_NUMBER or OWNER_NUMBER in .env to log pairing code.'));
       }
+
+      console.log(chalk.yellow('ℹ️ Could not fetch pairing code yet. The bot will continue trying on reconnect.'));
     }
 
     // Save session on credential updates
@@ -133,16 +140,7 @@ async function startBot() {
       }
 
       if (connection === "connecting" && !state.creds.registered && !pairingCodeRequested) {
-        const pairingNumber = getPairingNumber();
-        if (pairingNumber) {
-          try {
-            const code = await sock.requestPairingCode(pairingNumber);
-            logPairingCode(pairingNumber, code);
-            pairingCodeRequested = true;
-          } catch (pairErr) {
-            console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
-          }
-        }
+        await requestPairingCodeWithRetry();
       }
 
       // Connection established
@@ -161,8 +159,13 @@ async function startBot() {
         const reason = lastDisconnect?.error?.output?.statusCode;
 
         if (reason === DisconnectReason.loggedOut) {
-          console.log(chalk.red("❌ Logged out. Delete session folder and rescan."));
-          process.exit(0);
+          if (!state.creds.registered) {
+            console.log(chalk.yellow("⚠️ Pairing session reset by WhatsApp. Retrying fresh connection..."));
+            startBot();
+          } else {
+            console.log(chalk.red("❌ Logged out. Delete session folder and rescan."));
+            process.exit(0);
+          }
         } else if (reason === DisconnectReason.connectionClosed) {
           console.log(chalk.yellow("🔄 Connection closed. Reconnecting..."));
           startBot();

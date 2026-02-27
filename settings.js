@@ -13,4 +13,4 @@ const settings = {
   updateZipUrl: "https://github.com/Fellix-234/Felix-md-tech/archive/refs/heads/main.zip",
 };
 
-module.exports = settings;
+export default settings;
