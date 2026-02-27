@@ -5,11 +5,26 @@ import qrcode from 'qrcode-terminal';
 import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeysockets/baileys';
 import fs from 'fs';
 import path from 'path';
+import { createRequire } from 'module';
 
 // Ensure session directory exists
 const sessionDir = './session';
 if (!fs.existsSync(sessionDir)) {
   fs.mkdirSync(sessionDir, { recursive: true });
+}
+
+const require = createRequire(import.meta.url);
+const settings = require('./settings.js');
+
+function getPairingNumber() {
+  const candidate =
+    process.env.PAIRING_NUMBER ||
+    process.env.NUMERO_OWNER ||
+    process.env.OWNER_NUMBER ||
+    settings?.ownerNumber ||
+    '';
+
+  return String(candidate).replace(/\D/g, '');
 }
 
 // Initialize bot components (directories, audio, etc.)
@@ -36,6 +51,27 @@ async function startBot() {
       printQRInTerminal: true
     });
 
+    let pairingCodeRequested = false;
+
+    if (!state.creds.registered) {
+      const pairingNumber = getPairingNumber();
+
+      if (pairingNumber) {
+        try {
+          const code = await sock.requestPairingCode(pairingNumber);
+          const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
+          console.log(chalk.yellow(`\n🔐 Pairing code for +${pairingNumber}: ${formatted}`));
+          console.log(chalk.cyan('📲 On WhatsApp: Linked Devices -> Link a Device -> Enter pairing code\n'));
+          pairingCodeRequested = true;
+        } catch (pairErr) {
+          console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
+          console.log(chalk.yellow('ℹ️ Falling back to QR code in terminal.'));
+        }
+      } else {
+        console.log(chalk.yellow('ℹ️ Pairing number not configured. Set PAIRING_NUMBER or OWNER_NUMBER in .env to log pairing code.'));
+      }
+    }
+
     // Save session on credential updates
     sock.ev.on("creds.update", saveCreds);
 
@@ -47,6 +83,20 @@ async function startBot() {
       if (qr) {
         console.log(chalk.green("\n📱 Scan this QR code to connect:\n"));
         qrcode.generate(qr, { small: true });
+      }
+
+      if (connection === "connecting" && !state.creds.registered && !pairingCodeRequested) {
+        const pairingNumber = getPairingNumber();
+        if (pairingNumber) {
+          try {
+            const code = await sock.requestPairingCode(pairingNumber);
+            const formatted = code?.match(/.{1,4}/g)?.join('-') || code;
+            console.log(chalk.yellow(`\n🔐 Pairing code for +${pairingNumber}: ${formatted}`));
+            pairingCodeRequested = true;
+          } catch (pairErr) {
+            console.log(chalk.red(`❌ Failed to request pairing code: ${pairErr?.message || pairErr}`));
+          }
+        }
       }
 
       // Connection established
