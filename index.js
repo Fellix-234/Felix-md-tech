@@ -6,6 +6,7 @@ import { makeWASocket, useMultiFileAuthState, DisconnectReason } from '@whiskeys
 import fs from 'fs';
 import path from 'path';
 import { createRequire } from 'module';
+import readline from 'readline';
 import settings from './settings.js';
 
 // Ensure session directory exists
@@ -15,16 +16,62 @@ if (!fs.existsSync(sessionDir)) {
 }
 
 const defaultBotImageUrl = 'https://files.catbox.moe/cs1vep.jpg';
+let runtimePairingNumber = '';
 
 function getPairingNumber() {
-  const candidate =
-    process.env.PAIRING_NUMBER ||
-    process.env.NUMERO_OWNER ||
-    process.env.OWNER_NUMBER ||
-    settings?.ownerNumber ||
-    '';
+  const candidates = [
+    runtimePairingNumber,
+    process.env.PAIRING_NUMBER,
+    process.env.NUMERO_OWNER,
+    process.env.OWNER_NUMBER,
+    settings?.ownerNumber
+  ];
 
-  return String(candidate).replace(/\D/g, '');
+  for (const candidate of candidates) {
+    const digits = String(candidate || '').replace(/\D/g, '');
+    if (digits.length >= 10 && digits.length <= 15) {
+      return digits;
+    }
+  }
+
+  return '';
+}
+
+function askQuestion(prompt) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    rl.question(prompt, (answer) => {
+      rl.close();
+      resolve(answer);
+    });
+  });
+}
+
+async function ensurePairingNumberFromPrompt() {
+  const defaultNumber = getPairingNumber();
+
+  if (!process.stdin.isTTY) {
+    runtimePairingNumber = defaultNumber;
+    return;
+  }
+
+  const prompt = defaultNumber
+    ? `📱 Enter WhatsApp number for pairing (press Enter to use ${defaultNumber}): `
+    : '📱 Enter WhatsApp number for pairing (country code + number): ';
+
+  const input = await askQuestion(prompt);
+  const digits = String(input || '').replace(/\D/g, '');
+
+  if (digits.length >= 10 && digits.length <= 15) {
+    runtimePairingNumber = digits;
+    return;
+  }
+
+  runtimePairingNumber = defaultNumber;
 }
 
 function getOwnerJid() {
@@ -103,6 +150,7 @@ async function startBot() {
     let startupMessageSent = false;
 
     async function requestPairingCodeWithRetry() {
+      await ensurePairingNumberFromPrompt();
       const pairingNumber = getPairingNumber();
       if (!pairingNumber) {
         console.log(chalk.yellow('ℹ️ Pairing number not configured. Set PAIRING_NUMBER or OWNER_NUMBER in .env to log pairing code.'));
