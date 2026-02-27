@@ -38,6 +38,55 @@
     font-size: 1.2em;
     margin-top: 10px;
   }
+
+  .connection-state {
+    margin: 14px auto 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(37, 211, 102, 0.5);
+    background: rgba(37, 211, 102, 0.12);
+    font-size: 12px;
+    color: #d9ffe9;
+    font-weight: 600;
+  }
+
+  .connection-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #25D366;
+    box-shadow: 0 0 8px rgba(37, 211, 102, 0.8);
+  }
+
+  .connection-state.waiting {
+    border-color: rgba(255, 196, 87, 0.7);
+    background: rgba(255, 196, 87, 0.12);
+    color: #ffe8b0;
+  }
+
+  .connection-state.waiting .connection-dot {
+    background: #FFC457;
+    box-shadow: 0 0 8px rgba(255, 196, 87, 0.8);
+  }
+
+  .connection-state.connected {
+    border-color: rgba(37, 211, 102, 0.8);
+    background: rgba(37, 211, 102, 0.2);
+  }
+
+  .connection-state.error {
+    border-color: rgba(255, 100, 100, 0.8);
+    background: rgba(255, 100, 100, 0.12);
+    color: #ffc8c8;
+  }
+
+  .connection-state.error .connection-dot {
+    background: #ff6464;
+    box-shadow: 0 0 8px rgba(255, 100, 100, 0.8);
+  }
   
   /* Phone Input Section */
   .phone-input-section {
@@ -206,6 +255,13 @@
     color: #aaa;
     margin-top: 10px;
     font-style: italic;
+  }
+
+  .countdown {
+    font-size: 0.9em;
+    color: #25D366;
+    margin-top: 8px;
+    font-weight: bold;
   }
   
   .code-controls {
@@ -466,6 +522,10 @@
 <div class="container">
   <h1>🤖 Felix MD Bot</h1>
   <h2>WhatsApp Connection</h2>
+  <div id="connection-state" class="connection-state">
+    <span class="connection-dot"></span>
+    <span id="connection-state-text">Idle</span>
+  </div>
   
   <!-- Phone Input Section -->
   <div id="phone-input-section" class="phone-input-section">
@@ -489,7 +549,7 @@
       </div>
     </div>
     
-    <button class="generate-btn" onclick="generatePairingCode()">
+    <button id="generateBtn" class="generate-btn" onclick="generatePairingCode()">
       🔐 Generate Pairing Code
     </button>
     
@@ -498,8 +558,8 @@
   
   <!-- Method Toggle (shown after phone entered) -->
   <div id="method-toggle" class="method-toggle" style="display:none;">
-    <button class="toggle-btn active" onclick="showMethod('pairing')">📋 Pairing Code</button>
-    <button class="toggle-btn" onclick="showMethod('qr')">📱 QR Code (Optional)</button>
+    <button id="toggle-pairing" class="toggle-btn active" onclick="showMethod('pairing', this)">📋 Pairing Code</button>
+    <button id="toggle-qr" class="toggle-btn" onclick="showMethod('qr', this)">📱 QR Code (Optional)</button>
   </div>
   
   <!-- Pairing Code Section -->
@@ -508,6 +568,7 @@
       <div class="pairing-code-label">🔐 Your Pairing Code:</div>
       <div id="pairing-code" class="pairing-code-display">Loading...</div>
       <div class="phone-display" id="phone-display"></div>
+      <div class="countdown" id="code-expiry">⏱️ Expires in 60s</div>
       <div class="code-controls">
         <button class="small-btn" onclick="copyPairingCode()">📋 Copy Code</button>
         <button class="small-btn" onclick="refreshPairingCode()">🔄 New Code</button>
@@ -596,10 +657,57 @@ let currentPairingCode = '';
 let currentMethod = 'pairing';
 let refreshInterval = null;
 let sessionCheckInterval = null;
+let countdownInterval = null;
+let codeExpirySeconds = 60;
+let isGenerating = false;
+
+function updateConnectionState(state, text) {
+  const stateEl = document.getElementById('connection-state');
+  const stateTextEl = document.getElementById('connection-state-text');
+
+  stateEl.classList.remove('waiting', 'connected', 'error');
+  if (state !== 'idle') stateEl.classList.add(state);
+  stateTextEl.textContent = text;
+}
+
+function setMainStatus(message, type = 'loading', visible = true) {
+  const statusMain = document.getElementById('status-main');
+  statusMain.textContent = message;
+  statusMain.className = `status ${type}`;
+  statusMain.style.display = visible ? 'block' : 'none';
+}
+
+function setGenerateLoading(loading) {
+  const generateBtn = document.getElementById('generateBtn');
+  if (!generateBtn) return;
+  generateBtn.disabled = loading;
+  generateBtn.textContent = loading ? '⏳ Generating...' : '🔐 Generate Pairing Code';
+}
+
+function startCodeCountdown() {
+  const expiryEl = document.getElementById('code-expiry');
+  codeExpirySeconds = 60;
+
+  if (countdownInterval) clearInterval(countdownInterval);
+
+  expiryEl.textContent = `⏱️ Expires in ${codeExpirySeconds}s`;
+
+  countdownInterval = setInterval(() => {
+    codeExpirySeconds -= 1;
+    if (codeExpirySeconds <= 0) {
+      expiryEl.textContent = '⏱️ Code expired, refreshing...';
+      clearInterval(countdownInterval);
+      return;
+    }
+    expiryEl.textContent = `⏱️ Expires in ${codeExpirySeconds}s`;
+  }, 1000);
+}
 
 // Start polling for session creation
 function startSessionCheck() {
   console.log('Starting session check...');
+  setMainStatus('Waiting for WhatsApp link confirmation...', 'loading', true);
+  updateConnectionState('waiting', 'Waiting for link confirmation');
   
   if (sessionCheckInterval) clearInterval(sessionCheckInterval);
   
@@ -612,6 +720,7 @@ function startSessionCheck() {
         console.log('Session detected!', data.sessionId);
         showSessionWarning(data.sessionId);
         clearInterval(sessionCheckInterval);
+        setMainStatus('Session created successfully.', 'success', true);
       }
     } catch (err) {
       console.error('Error checking session:', err);
@@ -631,6 +740,7 @@ function showSessionWarning(sessionId) {
   
   // Update with actual session ID
   document.getElementById('session-id-display').textContent = sessionId;
+  updateConnectionState('connected', 'Connected');
   
   // Scroll to warning
   document.getElementById('session-warning-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -662,6 +772,8 @@ function formatPhoneDisplay(phone) {
 
 // Generate pairing code
 async function generatePairingCode() {
+  if (isGenerating) return;
+
   const phoneInput = document.getElementById('phoneInput').value.trim();
   const statusDiv = document.getElementById('phone-status');
   
@@ -681,6 +793,9 @@ async function generatePairingCode() {
   }
   
   currentPhoneNumber = validation.phone;
+  isGenerating = true;
+  setGenerateLoading(true);
+  updateConnectionState('waiting', 'Generating code');
   statusDiv.textContent = 'Generating pairing code...';
   statusDiv.className = 'status loading';
   statusDiv.style.display = 'block';
@@ -717,6 +832,7 @@ async function generatePairingCode() {
     // Update display
     document.getElementById('pairing-code').textContent = currentPairingCode;
     document.getElementById('phone-display').textContent = `Phone: ${formatPhoneDisplay(currentPhoneNumber)}`;
+    startCodeCountdown();
     
     statusDiv.textContent = 'Pairing code generated! Valid for 60 seconds.';
     statusDiv.className = 'status success';
@@ -732,6 +848,10 @@ async function generatePairingCode() {
     console.error('Error:', err);
     statusDiv.textContent = 'Error: ' + err.message;
     statusDiv.className = 'status error';
+    updateConnectionState('error', 'Generation failed');
+  } finally {
+    isGenerating = false;
+    setGenerateLoading(false);
   }
 }
 
@@ -740,18 +860,28 @@ async function refreshPairingCode() {
   if (!currentPhoneNumber) return;
   
   try {
+    setMainStatus('Refreshing pairing code...', 'loading', true);
+    updateConnectionState('waiting', 'Refreshing code');
     const response = await fetch('/paircode', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phoneNumber: currentPhoneNumber })
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to refresh code');
+    }
     
     const data = await response.json();
     currentPairingCode = data.pairingCode;
     document.getElementById('pairing-code').textContent = currentPairingCode;
+    startCodeCountdown();
+    setMainStatus('Pairing code refreshed.', 'success', true);
     
   } catch (err) {
     console.error('Error refreshing code:', err);
+    setMainStatus('Could not refresh pairing code. Try again.', 'error', true);
+    updateConnectionState('error', 'Refresh failed');
   }
 }
 
@@ -773,6 +903,10 @@ function changePairingCode() {
   
   if (refreshInterval) clearInterval(refreshInterval);
   if (sessionCheckInterval) clearInterval(sessionCheckInterval);
+  if (countdownInterval) clearInterval(countdownInterval);
+
+  setMainStatus('', 'loading', false);
+  updateConnectionState('idle', 'Idle');
   
   document.getElementById('phoneInput').focus();
 }
@@ -796,11 +930,11 @@ function showCopyFeedback() {
 }
 
 // Show different method
-function showMethod(method) {
+function showMethod(method, buttonEl) {
   currentMethod = method;
   
   document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  if (buttonEl) buttonEl.classList.add('active');
   
   if (method === 'pairing') {
     document.getElementById('pairing-section').classList.add('active');
@@ -838,29 +972,55 @@ async function refreshQRCode() {
   if (!currentPhoneNumber) return;
   
   try {
+    setMainStatus('Generating QR code...', 'loading', true);
+    updateConnectionState('waiting', 'Generating QR code');
     const response = await fetch('/paircode', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phoneNumber: currentPhoneNumber })
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to load QR code');
+    }
     
     const data = await response.json();
     const qrData = data.qrURL + '?t=' + Date.now();
     generateQRCode(qrData);
+    setMainStatus('QR code ready.', 'success', true);
+    updateConnectionState('waiting', 'Waiting for scan');
     
   } catch(err) {
     console.error('Error:', err);
+    setMainStatus('Could not load QR code. Try refresh.', 'error', true);
+    updateConnectionState('error', 'QR generation failed');
   }
 }
 
 // Focus on input when page loads
 window.addEventListener('load', function() {
   document.getElementById('phoneInput').focus();
+  updateConnectionState('idle', 'Idle');
 });
 
 // Allow Enter key to submit
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('phoneInput').addEventListener('keypress', function(e) {
+  const phoneInput = document.getElementById('phoneInput');
+
+  phoneInput.addEventListener('input', function(e) {
+    const raw = e.target.value;
+    let sanitized = raw.replace(/[^\d+]/g, '');
+
+    if (!sanitized.startsWith('+') && sanitized.length > 0) {
+      sanitized = '+' + sanitized.replace(/\+/g, '');
+    } else if (sanitized.startsWith('+')) {
+      sanitized = '+' + sanitized.substring(1).replace(/\+/g, '');
+    }
+
+    e.target.value = sanitized;
+  });
+
+  phoneInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
       generatePairingCode();
     }
