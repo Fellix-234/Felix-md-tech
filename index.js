@@ -17,6 +17,10 @@ if (!fs.existsSync(sessionDir)) {
 
 const defaultBotImageUrl = 'https://files.catbox.moe/cs1vep.jpg';
 let runtimePairingNumber = '';
+let hasPromptedForPairingNumber = false;
+let reconnectAttempts = 0;
+let reconnectTimer = null;
+let isStarting = false;
 
 function getPairingNumber() {
   const candidates = [
@@ -122,6 +126,21 @@ async function sendStartupMessage(sock) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function scheduleReconnect(reasonLabel = 'unknown') {
+  reconnectAttempts += 1;
+  const delay = Math.min(30000, 2000 * Math.pow(2, Math.max(0, reconnectAttempts - 1)));
+
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer);
+  }
+
+  console.log(chalk.yellow(`🔄 Reconnecting in ${Math.round(delay / 1000)}s (attempt ${reconnectAttempts}, reason: ${reasonLabel})...`));
+  reconnectTimer = setTimeout(() => {
+    reconnectTimer = null;
+    startBot();
+  }, delay);
+}
+
 // Initialize bot components (directories, audio, etc.)
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 try {
@@ -134,11 +153,19 @@ try {
 }
 
 async function startBot() {
+  if (isStarting) return;
+  isStarting = true;
+
   try {
     console.log(chalk.blue('🤖 Starting Felix MD Bot...'));
     
     // Auth state (saved in /session folder)
     const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
+
+    if (!state.creds.registered && !hasPromptedForPairingNumber) {
+      await ensurePairingNumberFromPrompt();
+      hasPromptedForPairingNumber = true;
+    }
 
     const sock = makeWASocket({
       auth: state,
@@ -150,7 +177,6 @@ async function startBot() {
     let startupMessageSent = false;
 
     async function requestPairingCodeWithRetry() {
-      await ensurePairingNumberFromPrompt();
       const pairingNumber = getPairingNumber();
       if (!pairingNumber) {
         console.log(chalk.yellow('ℹ️ Pairing number not configured. Set PAIRING_NUMBER or OWNER_NUMBER in .env to log pairing code.'));
@@ -193,6 +219,12 @@ async function startBot() {
 
       // Connection established
       if (connection === "open") {
+        reconnectAttempts = 0;
+        if (reconnectTimer) {
+          clearTimeout(reconnectTimer);
+          reconnectTimer = null;
+        }
+
         console.log(chalk.green("✅ Felix MD Bot connected successfully!"));
         console.log(chalk.cyan("🎵 Bot ready! Sound effects enabled."));
 
@@ -209,26 +241,22 @@ async function startBot() {
         if (reason === DisconnectReason.loggedOut) {
           if (!state.creds.registered) {
             console.log(chalk.yellow("⚠️ Pairing session reset by WhatsApp. Retrying fresh connection..."));
-            startBot();
+            scheduleReconnect('pairing-session-reset');
           } else {
             console.log(chalk.red("❌ Logged out. Delete session folder and rescan."));
             process.exit(0);
           }
         } else if (reason === DisconnectReason.connectionClosed) {
-          console.log(chalk.yellow("🔄 Connection closed. Reconnecting..."));
-          startBot();
+          scheduleReconnect('connection-closed');
         } else if (reason === DisconnectReason.connectionLost) {
-          console.log(chalk.yellow("🔄 Connection lost. Reconnecting..."));
-          startBot();
+          scheduleReconnect('connection-lost');
         } else if (reason === DisconnectReason.connectionReplaced) {
-          console.log(chalk.yellow("🔄 Connection replaced elsewhere. Reconnecting..."));
-          startBot();
+          scheduleReconnect('connection-replaced');
         } else if (reason === DisconnectReason.restartRequired) {
-          console.log(chalk.yellow("🔄 Restart required. Reconnecting..."));
-          startBot();
+          scheduleReconnect('restart-required');
         } else {
-          console.log(chalk.yellow(`🔄 Disconnected with reason: ${reason}. Reconnecting...`));
-          startBot();
+          console.log(chalk.yellow(`🔄 Disconnected with reason: ${reason}.`));
+          scheduleReconnect(String(reason));
         }
       }
     });
@@ -243,7 +271,9 @@ async function startBot() {
 
   } catch (err) {
     console.error(chalk.red("❌ Error starting bot:"), err);
-    setTimeout(startBot, 5000);
+    scheduleReconnect('startup-error');
+  } finally {
+    isStarting = false;
   }
 }
 
